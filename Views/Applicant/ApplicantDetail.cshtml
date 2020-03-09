@@ -1,0 +1,414 @@
+@{
+    Layout = "_LayoutHC";
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+.card {
+    padding-top: 20px;
+    margin: 10px 0 20px 0;
+    background-color: rgba(214, 224, 226, 0.2);
+    border-top-width: 0;
+    border-bottom-width: 2px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.card .card-heading {
+    padding: 0 20px;
+    margin: 0;
+}
+
+.card .card-heading.simple {
+    font-size: 20px;
+    font-weight: 300;
+    color: #777;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.card .card-heading.image img {
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    margin-right: 15px;
+    vertical-align: top;
+    border: 0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.card .card-heading.image .card-heading-header {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.card .card-heading.image .card-heading-header h3 {
+    margin: 0;
+    font-size: 14px;
+    line-height: 16px;
+    color: #262626;
+}
+
+.card .card-heading.image .card-heading-header span {
+    font-size: 12px;
+    color: #999999;
+}
+
+.card .card-body {
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+.card .card-media {
+    padding: 0 20px;
+    margin: 0 -14px;
+}
+
+.card .card-media img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card .card-actions {
+    min-height: 30px;
+    padding: 0 20px 20px 20px;
+    margin: 20px 0 0 0;
+}
+
+.card .card-comments {
+    padding: 20px;
+    margin: 0;
+    background-color: #f8f8f8;
+}
+
+.card .card-comments .comments-collapse-toggle {
+    padding: 0;
+    margin: 0 20px 12px 20px;
+}
+
+.card .card-comments .comments-collapse-toggle a,
+.card .card-comments .comments-collapse-toggle span {
+    padding-right: 5px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #999;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-comments .media-heading {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.card.people {
+    position: relative;
+    display: inline-block;
+    width: 170px;
+    height: 300px;
+    padding-top: 0;
+    margin-left: 20px;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.card.people:first-child {
+    margin-left: 0;
+}
+
+.card.people .card-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 170px;
+    height: 150px;
+    background-color: #ffffff;
+}
+
+.card.people .card-top.green {
+    background-color: #53a93f;
+}
+
+.card.people .card-top.blue {
+    background-color: #427fed;
+}
+
+.card.people .card-info {
+    position: absolute;
+    top: 150px;
+    display: inline-block;
+    width: 100%;
+    height: 101px;
+    overflow: hidden;
+    background: #ffffff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.card.people .card-info .title {
+    display: block;
+    margin: 8px 14px 0 14px;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 18px;
+    color: #404040;
+}
+
+.card.people .card-info .desc {
+    display: block;
+    margin: 8px 14px 0 14px;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 16px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+
+.card.people .card-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    padding: 10px 20px;
+    line-height: 29px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #D6EAF8;
+}
+
+.card.hovercard .cardheader {
+    background: #1F618D;
+    background-size: cover;
+    height: 90px;
+}
+
+.card.hovercard .avatar {
+    position: relative;
+    top: -50px;
+    margin-bottom: -50px;
+}
+
+.card.hovercard .avatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255,255,255,0.5);
+}
+
+.card.hovercard .info {
+    padding: 4px 8px 10px;
+}
+
+.card.hovercard .info .title {
+    margin-bottom: 4px;
+    font-size: 24px;
+    line-height: 1;
+    color: #262626;
+    vertical-align: middle;
+}
+
+.card.hovercard .info .desc {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+
+.card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+}
+
+</style>
+
+  @{
+     var Employee = ViewBag.items;
+     <input type="hidden" id="ID" value="@Employee.Id">
+          
+<br><br>
+
+  
+
+<div class="container">
+   <div class="column">
+    <div class="column text-right"> <div class="col-lg-12 col-sm-5">
+@* <button class="btn btn-success"  id="Employee.id" data-name="@Employee.Name" data-email="@Employee.Email" data-phone="@Employee.Phone" data-occupation="@Employee.Occupation" data-placement="@Employee.Placement" data-address="@Employee.Address" data-emergency="@Employee.EmergencyContact" data-toggle="modal" data-target="#exampleModal"><b>Update</b></button> *@
+<button class="btn btn-success" onclick="javascript:Update(this)"><b>Edit Data</b></button>
+<button class="btn btn-danger" onclick="javascript:Remove(this)"><b>Remove</b></button>
+</div></div> </div>
+	<div class="row">
+		<div class="col-lg-12 col-sm-6">
+
+            <div class="card hovercard">
+                <div class="cardheader" style="margin-top: 15px;">
+                    <div style="padding-top:2px; padding-bottom:5px">
+                  <h2 style="color:#EBF5FB"><b>@Employee.Name</b></h2></div>
+                </div>
+                <div class="avatar"><br>
+                    <img alt="profil-picture" src=@Employee.Image>
+                </div>
+                <div class="info">
+                    <div style="color:#FF4842">
+                        <b>@Employee.Occupation</b>
+                    </div>
+                    <div class="desc">@Employee.Email</div>
+                    <div class="desc">@Employee.Phone</div>
+                </div>
+                <div class="bottom">
+                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" rel="publisher"
+                       href="https://plus.google.com/+ahmshahnuralam">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm" rel="publisher"
+                       href="https://plus.google.com/shahnuralam">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+                        <i class="fa fa-behance"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+	</div>
+
+<div class="col-lg-12 col-sm-6">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Birth Date</th>
+      <th scope="col">Birth Place</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Address</th>
+      <th scope="col">Emergency Contact</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>@Employee.BirthDate</td>
+      <td>@Employee.BirthPlace</td>
+      <td>@Employee.Gender</td>
+      <td>@Employee.Address</td>
+      <td>@Employee.EmergencyContact</td>
+    </tr>
+</table> 
+</div> 
+
+</div>
+<br><br><br>
+  }
+
+
+<script type="text/javascript">
+function Update()
+{
+    var Id = document.getElementById("ID").value;
+    location.href='/Employee/EmployeeUpdate?Id='+Id;
+}
+
+function Remove()
+{
+    var Id = document.getElementById("ID").value;
+    location.href='/Employee/EmployeeRemove?Id='+Id;
+}
+</script>
+
+
+
+
+@* 
+  <div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document" >
+        <div class="modal-content" style="width:500px;height:550px">
+          <div class="modal-header">
+            <h4 class="modal-title"><b>Update Data</b></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form method="POST">
+          <div class="modal-body">
+            <label for="title"><b>Title</b></label><br>
+            <input type="text" name="edit" class="form-control" value="update" hidden>
+            <input type="text" name="id" id="id1" class="form-control" value="" hidden>
+            <input type="text" name="title" id="title1" class="form-control">
+            <br>
+            <label for="name"><b>Name</b></label><br>
+            <input type="text"  name="highlight" id="name1" class="form-control">
+            <br>
+            <label for="email"><b>Email</b></label><br>
+            <input type="text"  name="email" id="email1" class="form-control">
+            <br>
+            <label for="phone"><b>Phone</b></label><br>
+            <input type="text" name="phone" id="phone1" class="form-control">
+            <br>
+            <label for="occupation"><b>Occupation</b></label><br>
+            <input type="text"  name="occupation" id="occupation1" class="form-control">
+            <br>
+            <label for="placement"><b>Placement</b></label><br>
+            <input type="text"  name="email" id="placement1" class="form-control">
+            <br>
+            <label for="address"><b>Address</b></label><br>
+            <input type="text"  name="address" id="address1" class="form-control">
+            <br>
+            <label for="emergency"><b>Emergency</b></label><br>
+            <input type="text"  name="emergency" id="emergency1" class="form-control">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;color:white;">Close</button>
+            <button type="submit" class="btn btn-primary" id="savechanges" id="edit">Save changes</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        console.log('Masuk Sini')
+        $('#exampleModal').on('show.bs.modal', function (e) {
+        $('#id1').val($(e.relatedTarget).data('id'))
+        $('#name1').val($(e.relatedTarget).data('name'))
+        $('#email1').val($(e.relatedTarget).data('email'))
+        $('#phone1').val($(e.relatedTarget).data('phone'))
+        $('#occupation1').val($(e.relatedTarget).data('occupation'))
+        $('#placement1').val($(e.relatedTarget).data('placement'))
+        $('#address1').val($(e.relatedTarget).data('address'))
+        $('#emergency1').val($(e.relatedTarget).data('emergency'))
+    })
+})
+</script> *@
