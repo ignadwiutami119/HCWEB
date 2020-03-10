@@ -24,31 +24,40 @@ namespace HC_WEB_FINALPROJECT.Controllers
         }
 
 
-        public IActionResult AttendanceList()
+        public IActionResult AttendanceList(int Id)
         {
+            var get_Attendance = from u in _AppDbContext.Attendances where u.EmployeeId == Id.ToString() select u;
+            ViewBag.Attendance = get_Attendance;
+            var get_employee = _AppDbContext.Employee.Find(Id);
+            ViewBag.employee = get_employee;
             var now = DateTime.Now;
             var get = now.AddDays(-7);
             ViewBag.items = get;
             return View("AttendanceList");
         }
-        public IActionResult Create_ClockIn(string EmployeeID, string Remark)
+
+        public IActionResult AttendanceHome()
         {
-            var employees = from a in _AppDbContext.Employee where a.EmployeeID == EmployeeID select a;
-            var employee = employees.First();
+            var get_employee = from a in _AppDbContext.Employee select a;
+            ViewBag.items = get_employee;
+            return View("AttendanceHome");
+        }
+        public IActionResult Create_ClockIn(int Id, string Remark)
+        {
+            var employee = _AppDbContext.Employee.Find(Id);
             var obj = new Attendance()
             {
                 ClockIn = DateTime.Now,
                 Remarks_in = Remark,
-                EmployeeId = (employee.Id).ToString()
+                EmployeeId = Id.ToString()
             };
             _AppDbContext.Attendances.Add(obj);
             _AppDbContext.SaveChanges();
-            return RedirectToAction("AttendanceList", "Attendance");
+            return RedirectToAction("AttendanceHome", "Attendance");
         }
-        public IActionResult Create_ClockOut(string EmployeeID, string Remark)
+        public IActionResult Create_ClockOut(int Id, string Remark)
         {
-            var employee_list = from a in _AppDbContext.Employee where a.EmployeeID == EmployeeID select a;
-            var employee = employee_list.First();
+            var employee =  _AppDbContext.Employee.Find(Id);
             var clckout = DateTime.Now;
             var spesific_clockin = from a in _AppDbContext.Attendances where ((a.ClockIn.Day == clckout.Day  && a.ClockIn.Month == clckout.Month && a.ClockIn.Year == clckout.Year) && (a.EmployeeId == (employee.Id).ToString())) select a;
             if (spesific_clockin.Any())
@@ -59,15 +68,19 @@ namespace HC_WEB_FINALPROJECT.Controllers
                 obj.status = "success";
                 _AppDbContext.SaveChanges();
             }
-            return RedirectToAction("AttendanceList", "Attendance");
+            return RedirectToAction("AttendanceHome", "Attendance");
         }
 
-        public IActionResult ClockIn()
+        public IActionResult ClockIn(int Id)
         {
+            var get = _AppDbContext.Employee.Find(Id);
+            ViewBag.Employee = get;
             return View();
         }
-        public IActionResult ClockOut()
+        public IActionResult ClockOut(int Id)
         {
+            var get = _AppDbContext.Employee.Find(Id);
+            ViewBag.Employee = get;
             return View();
         }
         public IActionResult Privacy()

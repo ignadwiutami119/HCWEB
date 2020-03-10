@@ -4,14 +4,16 @@ using HC_WEB_FINALPROJECT.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HC_WEB_FINALPROJECT.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200310070825_tambahleavemodel")]
+    partial class tambahleavemodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,30 +192,6 @@ namespace HC_WEB_FINALPROJECT.Migrations
                     b.ToTable("Employee");
                 });
 
-            modelBuilder.Entity("HC_WEB_FINALPROJECT.Models.LeavePaging", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CurentPage")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Search")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ShowItem")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StatusPage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LeavePagings");
-                });
-
             modelBuilder.Entity("HC_WEB_FINALPROJECT.Models.LeaveRequest", b =>
                 {
                     b.Property<int>("Id")
@@ -221,16 +199,7 @@ namespace HC_WEB_FINALPROJECT.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("EmployeeDepartment")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("EmployeeID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmployeeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmployeeOccupation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("End")

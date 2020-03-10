@@ -20,7 +20,10 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             _logger = logger;
         }
 
-        public IActionResult EmployeeList (int _crntpage = 1, string status_employee = "permanent") {
+        public IActionResult EmployeeList (string status_employee, int _crntpage = 1) {
+            if(status_employee == null){
+                status_employee = "permanent";
+            }
             var set_page = _AppDbContext.Pagings.Find (1);
             set_page.Search= "";
             set_page.StatusPage = status_employee;
@@ -48,7 +51,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             var paging = _AppDbContext.Pagings.Find(1);
             paging.Search = keyword;
             _AppDbContext.SaveChanges();
-            var get = from a in _AppDbContext.Employee where a.Name.Contains (keyword) || a.Address.Contains (keyword) || a.Email.Contains (keyword) || a.Occupation.Contains (keyword) || a.Placement.Contains (keyword) select a;            
+            var get = from a in _AppDbContext.Employee where (a.Status == paging.StatusPage) && (a.Name.Contains (keyword) || a.Phone.Contains(keyword) || a.Address.Contains (keyword) || a.Email.Contains (keyword) || a.Occupation.Contains (keyword) || a.Placement.Contains (keyword)) select a;            
             ViewBag.items = get;
             var set_page = _AppDbContext.Pagings.Find (1);
             ViewBag.page = set_page;
@@ -73,14 +76,20 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             return View ("EmployeeUpdate");
         }
 
-        public IActionResult EmployeeUpdateData (int Id, string name, string email, string address, string phone, string occupation, string placement, string emergency, string status, IFormFile image) {
+        public IActionResult EmployeeUpdateData (int Id, string name, string email, string address, string phone, string occupation, string placement, string emergency, string status, IFormFile image=null) {
+            var file="";
+            if(image == null){
+            var getemployee = _AppDbContext.Employee.Find (Id);
+            file = getemployee.Image;
+            }
+            else if(image != null){
             var path = "wwwroot//image";
             Directory.CreateDirectory(path);
             var Filename = Path.Combine (path, Path.GetFileName (image.FileName));
             image.CopyTo (new FileStream (Filename, FileMode.Create));
-            var file = Filename.Substring(8).Replace(@"\","/");
+            file = Filename.Substring(8).Replace(@"\","/");
             Console.WriteLine(file);
-            Console.WriteLine("ini nama file");
+            Console.WriteLine("ini nama file"); }
             var get = _AppDbContext.Employee.Find (Id);
             get.Image = file;
             get.Name = name;
@@ -266,7 +275,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                                        $"{item.EmergencyContact}"
                          }).ToList(); }
             else if(paging.Search != null){
-                items = (from item in _AppDbContext.Employee where item.Status==paging.StatusPage && (item.Name.Contains(paging.Search) || item.Email.Contains(paging.Search) || item.Phone.Contains(paging.Search) || item.Occupation.Contains(paging.Search) || item.Placement.Contains(paging.Search))
+                items = (from item in _AppDbContext.Employee where item.Status==paging.StatusPage && (item.Name.Contains(paging.Search) || item.Email.Contains(paging.Search) || item.Phone.Contains(paging.Search) || item.Occupation.Contains(paging.Search) || item.Address.Contains(paging.Search) || item.Placement.Contains(paging.Search))
                          select new object[]
                          {
                                        item.Id,

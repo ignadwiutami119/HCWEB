@@ -265,24 +265,16 @@ background: #ffffff;
 
 </style>
 
- <br>
+ <br><br>
 
 <div class="container">
     <div class="column">
-        <div class="col-lg-12 col-sm-5">
-        <h3><b>Employee List</b></h3></div>
-    <div class="col-lg-12 col-sm-5"><div class="column text-right"> 
-<button onclick="location.href='/Employee/ExportCSV'" class="btn btn-success"><b>Export CSV</b></button>
-<button onclick="location.href='/Employee/ExportAll'" class="btn btn-success"><b>Export CSV (All)</b></button>
-<form method="post" enctype="multipart/form-data" asp-action="Import" asp-controller="Employee">
-        <div>
-            <input class="form-control" name="file" type="file" value="file" required />
-            <button class="btn btn-success" type="submit" onclick="location.href='/Employee/Import'"><b>Import</b></button>
-        </div>
-</form> 
-<button class="btn btn-success"><b>Import CSV</b></button>
-<button onclick="location.href='/Employee/AddEmployee'" class="btn btn-success"><b>Add New Employee</b></button> </div></div> </div>
-
+    <div class="col-lg-12 col-sm-5">
+<div class="column text-right"> 
+<p class="text-left" style="color:#FF5693; font-size:33px"><b>Leave Request</b></p>    
+<button onclick="location.href='/LeaveRequest/ExportCSV'" class="btn btn-success"><b>Export CSV</b></button>
+<button onclick="location.href='/LeaveRequest/ExportAll'" class="btn btn-success"><b>Export CSV (All)</b></button>
+<button onclick="location.href='/LeaveRequest/AddLeave'" class="btn btn-success"><b>Add Leave Request</b></button> </div></div></div>
 
         <div class="col-lg-12 col-sm-5">
              <div class="card hovercard">
@@ -291,17 +283,17 @@ background: #ffffff;
                    </div>
                    <div class="col-lg-2 col-sm-2">
                        <br>
-                    <a onclick="location.href='/Employee/EmployeeList?status_employee=permanent'" style="color:#F5FBFF; font-family:Helvetica, sans-serif; "><b>Permanent</b></a>
+                    <a onclick="location.href='/LeaveRequest/LeaveRequestList?status=pending'" style="color:#F5FBFF; font-family:Helvetica, sans-serif; "><b>Pending</b></a>
                    <br>
                    </div> 
                    <div class="col-lg-2 col-sm-2">
                        <br>
-                    <a onclick="location.href='/Employee/EmployeeList?status_employee=contract'" style="color:#F5FBFF; font-family:Helvetica, sans-serif"><b>Contract</b></a>
+                    <a onclick="location.href='/LeaveRequest/LeaveRequestList?status=approve'" style="color:#F5FBFF; font-family:Helvetica, sans-serif"><b>Approved</b></a>
                    <h2></h2>
                    </div>
                    <div class="col-lg-2 col-sm-2">
                        <br>
-                    <a onclick="location.href='/Employee/EmployeeList?status_employee=probation'" style="color:#F5FBFF; font-family:Helvetica, sans-serif"><b>Probation</b></a>
+                    <a onclick="location.href='/LeaveRequest/LeaveRequestList?status=reject'" style="color:#F5FBFF; font-family:Helvetica, sans-serif"><b>Rejected</b></a>
                    <br>
                    </div>
                    <div class="col-lg-3 col-sm-3">
@@ -322,28 +314,33 @@ background: #ffffff;
 <table style="background:white" class="table text-left">
             <tbody>
    @{
-    var items = ViewBag.items;
+    var Leave = ViewBag.items;
     <br>
     <thead class="thead-dark">
     <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Occupation</th>
-      <th scope="col">Department</th>
-      <th scope="col"></th>
+      <th class="text-center" scope="col">Name</th>
+      <th class="text-center" scope="col">Occupation</th>
+      <th class="text-center" scope="col">Department</th>
+      <th class="text-center" scope="col">Start</th>
+      <th class="text-center" scope="col">End</th>
+      <th class="text-center" scope="col"></th>
     </tr>
   </thead>    
-    foreach(var a in items) { 
+    foreach(var a in Leave) { 
             <tr>
         <input type="hidden"  id="Id-@a.Id" value="@a.Id">
-                @* <td><img style="width:17%" src="@a.Image"></td> *@
-                <td><b>@a.Name</b></td>
-                <td>@a.Email</td>
-                <td>@a.Phone</td>
-                <td class="text-left">@a.Occupation</td>
-                <td class="text-left">@a.Placement</td>
-                <td class="text-center"><a id="btn-@a.Id" onclick="javascript:EmployeeDetail(this)"><span class="glyphicon glyphicon-chevron-right"></span></a></td>
+                <td class="text-center"><b>@a.EmployeeName</b></td>
+                <td class="text-center">@a.EmployeeOccupation</td>
+                <td class="text-center">@a.EmployeeDepartment</td>
+                <td class="text-center">@a.Start</td>
+                <td class="text-center">@a.End</td>
+                <td class="text-left"><a id="btn-@a.Id" onclick="javascript:ApplicantDetail(this)"><span class="glyphicon glyphicon-chevron-right"></span></a></td>
+            @{
+            if(a.status=="pending"){
+                <td class="text-right"><button id="btn-@a.Id" class="btn" style="background:#FF5693; color:white" onclick="javascript:Approve(this)">Approve</button>  <button id="btn-@a.Id" class="btn" style="background:#3E3E3E; color:white" onclick="javascript:Reject(this)">Reject</button></td>}
+            else if(a.status!="pending"){
+                <td class="text-right"><button id="btn-@a.Id" class="btn btn-danger glyphicon glyphicon-trash" onclick="javascript:Remove(this)"></button></td>
+                } }
             </tr> 
             } 
     }
@@ -358,6 +355,9 @@ background: #ffffff;
 </div>
   </div>
 </div>
+<br><br><br>
+
+
 
 <div class="container">
 <div class="column">
@@ -369,12 +369,12 @@ background: #ffffff;
     <li class="page-item">
       <a class="page-link" href="">Previous</a>
     </li>
-    <li class="page-item"><a class="page-link" value="1" id="btn1" href="/Employee/EmployeeList?_crntpage=1&status_employee=@paging.StatusPage">1</a></li>
-    <li class="page-item"><a class="page-link" value="2" id="btn2" href="/Employee/EmployeeList?_crntpage=2&status_employee=@paging.StatusPage">2</a></li>
-    <li class="page-item"><a class="page-link" value="3" id="btn3" href="/Employee/EmployeeList?_crntpage=3&status_employee=@paging.StatusPage">3</a></li>
-    <li class="page-item"><a class="page-link" value="4" id="btn4" href="/Employee/EmployeeList?_crntpage=4&status_employee=@paging.StatusPage">4</a></li>
-    <li class="page-item"><a class="page-link" value="5" id="btn5" href="/Employee/EmployeeList?_crntpage=5&status_employee=@paging.StatusPage">5</a></li>
-    <li class="page-item"><a class="page-link" value="6" id="btn6" href="/Employee/EmployeeList?_crntpage=6&status_employee=@paging.StatusPage">6</a></li>
+    <li class="page-item"><a class="page-link" value="1" id="btn1" href="/LeaveRequest/LeaveRequestList?_crntpage=1&status=@paging.StatusPage">1</a></li>
+    <li class="page-item"><a class="page-link" value="2" id="btn2" href="/LeaveRequest/LeaveRequestList?_crntpage=2&status=@paging.StatusPage">2</a></li>
+    <li class="page-item"><a class="page-link" value="3" id="btn3" href="/LeaveRequest/LeaveRequestList?_crntpage=3&status=@paging.StatusPage">3</a></li>
+    <li class="page-item"><a class="page-link" value="4" id="btn4" href="/LeaveRequest/LeaveRequestList?_crntpage=4&status=@paging.StatusPage">4</a></li>
+    <li class="page-item"><a class="page-link" value="5" id="btn5" href="/LeaveRequest/LeaveRequestList?_crntpage=5&status=@paging.StatusPage">5</a></li>
+    <li class="page-item"><a class="page-link" value="6" id="btn6" href="/LeaveRequest/LeaveRequestList?_crntpage=6&status_employee=@paging.StatusPage">6</a></li>
     <li class="page-item">
       <a class="page-link" href="">Next</a>
     </li> }
@@ -382,21 +382,49 @@ background: #ffffff;
 <br><br><br></div></div>
 
 
+
 <script type="text/javascript">
-function EmployeeDetail(btn)
+function Approve(btn)
 {
     var id = btn.id;
     id = id.substring(4,id.Length);
     var identify = "Id-"+id;
     var Id = document.getElementById(identify).value;
-    location.href='/Employee/EmployeeDetail?Id='+Id;
+    location.href='/LeaveRequest/Approve?Id='+Id;
+}
+
+function Reject(btn)
+{
+    var id = btn.id;
+    id = id.substring(4,id.Length);
+    var identify = "Id-"+id;
+    var Id = document.getElementById(identify).value;
+    location.href='/LeaveRequest/Reject?Id='+Id;
+}
+
+function LeaveDetail(btn)
+{
+    var id = btn.id;
+    id = id.substring(4,id.Length);
+    var identify = "Id-"+id;
+    var Id = document.getElementById(identify).value;
+    location.href='/LeaveRequest/ApplicantDetail?Id='+Id;
+}
+
+function Remove(btn)
+{
+    var id = btn.id;
+    id = id.substring(4,id.Length);
+    var identify = "Id-"+id;
+    var Id = document.getElementById(identify).value;
+    location.href='/LeaveRequest/Remove?Id='+Id;
 }
 
 function Search()
 {
     var keyword = document.getElementById("keyword").value;
     console.log(keyword);
-    location.href='/Employee/Search?keyword='+keyword;
+    location.href='/LeaveRequest/Search?keyword='+keyword;
 }
 
 </script>
