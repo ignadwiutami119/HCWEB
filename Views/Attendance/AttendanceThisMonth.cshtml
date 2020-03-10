@@ -1,0 +1,57 @@
+@{
+    Layout = "_LayoutHC";
+}
+
+  <table style="background:white" class="table text-left">
+            <tbody>
+  
+    <br>
+    <thead class="thead-dark">
+    <tr>
+      <th class="text-center" scope="col">Date</th>
+      <th class="text-center" scope="col">Clock In</th>
+      <th class="text-center" scope="col">Clock Out</th>
+      <th class="text-center" scope="col">Status</th>
+    </tr>
+  </thead>
+    @{
+    var items = ViewBag.items;
+    var get = DateTime.Now;
+    var get_month = get.Month;
+    var get_year = get.Year;
+    var date = new DateTime(get_year,get_month,1);
+    var get_day_number = System.DateTime.DaysInMonth(date.Year, date.Month);
+    var dateonly="";
+    for(int i=1;i<=get_day_number;i++) {
+        date = new DateTime(get_year,get_month,i);
+        var datetocheck = date.ToString("dd/MM/yyyy");
+        dateonly = date.ToString("dd-MM-yyyy");
+            <tr>
+                <td class="text-center"><b>@dateonly</b></td>
+                @{var employee = ViewBag.Employee;
+                var attendance = ViewBag.Attendance;
+                foreach(var item in attendance){
+                if(datetocheck == (item.ClockIn).ToString("dd/MM/yyyy"))
+                {
+                var time = item.ClockIn;
+                var timeonly = time.ToString("hh:mm:ss tt");
+                <td class="text-center">@timeonly</td>
+                }}
+                foreach(var item in attendance){
+                if(datetocheck == (item.ClockOut).ToString("dd/MM/yyyy"))
+                {
+                    var time = item.ClockOut;
+                    var timeonly = time.ToString("hh:mm:ss tt");
+                <td class="text-center">@timeonly</td>
+                 }
+                 }
+                 foreach(var item in attendance){
+                if(datetocheck == (item.ClockIn).ToString("dd/MM/yyyy"))
+                {
+                <td class="text-center">@item.status</td> }}
+                }
+            </tr> 
+            } 
+    }
+ </tbody> 
+    </table>
