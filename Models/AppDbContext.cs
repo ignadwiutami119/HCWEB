@@ -7,6 +7,7 @@ namespace HC_WEB_FINALPROJECT.Models
         public DbSet<Account> Account {get;set;}
         public DbSet<LeaveRequest> LeaveRequests {get;set;}
         public DbSet<Attendance> Attendances {get;set;}
+        public DbSet<Broadcast> Broadcasts {get;set;}
         public DbSet<AttendancePaging> AttendancesPagings {get;set;}
         public DbSet<Employee> Employee {get;set;}
         public DbSet<Applicant> Applicant {get;set;}

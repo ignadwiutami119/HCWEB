@@ -56,6 +56,9 @@ namespace HC_WEB_FINALPROJECT.Migrations
                     b.Property<string>("BirthPlace")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CV")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -158,6 +161,27 @@ namespace HC_WEB_FINALPROJECT.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AttendancesPagings");
+                });
+
+            modelBuilder.Entity("HC_WEB_FINALPROJECT.Models.Broadcast", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Broadcasts");
                 });
 
             modelBuilder.Entity("HC_WEB_FINALPROJECT.Models.Employee", b =>

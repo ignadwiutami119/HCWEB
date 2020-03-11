@@ -88,6 +88,34 @@ namespace HC_WEB_FINALPROJECT.Controllers {
         }
 
         public IActionResult Dashboard () {
+            var now = DateTime.Now;
+            var presence = from a in _AppDbContext.Attendances where a.ClockIn.Day  == now.Day && a.ClockIn.Month == now.Month && a.ClockIn.Year == now.Year select a;
+            var presenceCount = presence.Count();
+            var Employee = from a in _AppDbContext.Employee select a;
+            var Female = from a in _AppDbContext.Employee where a.Gender == "female" select a;
+            var Male = from a in _AppDbContext.Employee where a.Gender == "male" select a;
+            var Applicant = from a in _AppDbContext.Applicant where a.Status_Proccess == "unproccess" select a;
+            var ApplicantView = (from a in _AppDbContext.Applicant where a.Status_Proccess == "unproccess" select a).Take(1);
+            foreach(var a in ApplicantView){
+                Console.WriteLine(a.Name);
+                Console.WriteLine("inicuy");
+            }
+            var CountApplicant = Applicant.Count();
+            var countFemale =  Female.Count();
+            var countMale =  Male.Count();
+            var countEmployee = Employee.Count();
+            var Leave = from a in _AppDbContext.LeaveRequests where (a.status == "approve") && (now >= a.Start && now <= a.End) select a;
+            var countLeave = Leave.Count();
+            Console.WriteLine("CEK ISI");
+            Console.WriteLine(countLeave);
+            Console.WriteLine(countEmployee);
+            ViewBag.Leave = countLeave;
+            ViewBag.Presence = presenceCount;
+            ViewBag.Employee = countEmployee;
+            ViewBag.Female = countFemale;
+            ViewBag.Male = countMale;
+            ViewBag.ApplicantView = ApplicantView;
+            ViewBag.ApplicantCount = CountApplicant;
             return View ();
         }
 

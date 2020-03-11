@@ -136,12 +136,14 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             }
             return Ok();
         }
-
-       public IActionResult Import([FromForm(Name = "file")] IFormFile file)
+       [HttpPost]
+       public IActionResult Importy([FromForm(Name = "file")] IFormFile file)
         {
+            Console.WriteLine("masuk method sini");
             string filePath = string.Empty;
             if (file != null)
             {
+                Console.WriteLine(file.FileName);
                 try
                 {
                     string fileExtension = Path.GetExtension(file.FileName);
@@ -152,15 +154,10 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                     }
                     using (var reader = new StreamReader(file.OpenReadStream()))
                     {
-                        string[] baris = reader.ReadLine().Split(',');
-                        Console.WriteLine("cek csv");
-                        Console.WriteLine(baris[0].ToString());
-                        Console.WriteLine(baris[1].ToString());
-                        Console.WriteLine(baris[2].ToString());
-                        Console.WriteLine(baris[3].ToString());
                         string[] header = reader.ReadLine().Split(',');
                         while (!reader.EndOfStream)
                         {
+                            Console.WriteLine("Masuk while");
                             string[] rows = reader.ReadLine().Split(',');
                             var obj = new Employee()
                             {

@@ -269,19 +269,17 @@ background: #ffffff;
 
 <div class="container">
     <div class="column">
-        <div class="col-lg-12 col-sm-5">
-        <h3><b>Employee List</b></h3></div>
-    <div class="col-lg-12 col-sm-5"><div class="column text-right"> 
-<button onclick="location.href='/Employee/ExportCSV'" class="btn btn-success"><b>Export CSV</b></button>
-<button onclick="location.href='/Employee/ExportAll'" class="btn btn-success"><b>Export CSV (All)</b></button>
-<form method="post" enctype="multipart/form-data" asp-action="Import" asp-controller="Employee">
-        <div>
-            <input class="form-control" name="file" type="file" value="file" required />
-            <button class="btn btn-success" type="submit" onclick="location.href='/Employee/Import'"><b>Import</b></button>
-        </div>
+        <h2 class="text-center" style="color:#FF5693; font-size:33px">Employee List</h2> <br><br>
+    <div class="col-lg-12 col-sm-5"><div class="column"> 
+<form asp-action="Importy" asp-controller="Employee" style="float:left;" method="post" enctype="multipart/form-data">
+            <div class="column">
+            <input name="file" type="file" value="file" required />       
+            </div>
+            <button class="btn btn-success"  type="submit"><b>Import CSV</b></button>
 </form> 
-<button class="btn btn-success"><b>Import CSV</b></button>
-<button onclick="location.href='/Employee/AddEmployee'" class="btn btn-success"><b>Add New Employee</b></button> </div></div> </div>
+<button style="float:right" onclick="location.href='/Employee/ExportCSV'" class="btn btn-success"><b>Export CSV</b></button>
+<button style="float:right" onclick="location.href='/Employee/ExportAll'" class="btn btn-success"><b>Export CSV (All)</b></button>
+<button style="float:right" onclick="location.href='/Employee/AddEmployee'" class="btn btn-success"><b>Add New Employee</b></button> </div></div> </div>
 
 
         <div class="col-lg-12 col-sm-5">

@@ -20,7 +20,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             _logger = logger;
         }
 
-        public IActionResult LeaveRequestList (string status,int _crntpage = 1) {
+        public IActionResult LeaveRequestList (string status="pending" ,int _crntpage = 1) {
             if(status == null){
                 status = "unproccess";
             }
@@ -58,17 +58,11 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             return RedirectToAction ("LeaveRequestList", "LeaveRequest");
         }
 
-        public IActionResult ApplicantDetail (int Id) {
-            var show = _AppDbContext.Applicant.Find (Id);
-            ViewBag.items = show;
-            return View ("ApplicantDetail");
-        }
-
         public IActionResult Search (string keyword) {
             var paging = _AppDbContext.LeavePagings.Find (1);
             paging.Search = keyword;
             _AppDbContext.SaveChanges ();
-            var get = from a in _AppDbContext.LeaveRequests where a.EmployeeName.Contains (keyword) || a.Remarks.Contains (keyword) || a.EmployeeDepartment.Contains (keyword) || a.EmployeeOccupation.Contains (keyword) || a.EmployeeID.Contains (keyword) select a;
+            var get = from a in _AppDbContext.LeaveRequests where (a.status == paging.StatusPage) && a.EmployeeName.Contains (keyword) || a.Remarks.Contains (keyword) || a.EmployeeDepartment.Contains (keyword) || a.EmployeeOccupation.Contains (keyword) || a.EmployeeID.Contains (keyword) select a;
             ViewBag.items = get;
             var set_page = _AppDbContext.LeavePagings.Find (1);
             ViewBag.page = set_page;
@@ -164,71 +158,26 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             // return RedirectToAction("ListEmployees","Employees");
         }
 
-        public IActionResult ApplicantUpdate (int Id) {
-            var show = _AppDbContext.Applicant.Find (Id);
-            ViewBag.items = show;
-            return View ("ApplicantUpdate");
-        }
-        public IActionResult ApplicantUpdateData (int Id, string name, string email, string address, string phone, string occupation, string placement, string emergency, string status, IFormFile image = null) {
-            var file = "";
-            if (image == null) {
-                var getApplicant = _AppDbContext.Applicant.Find (Id);
-                file = getApplicant.Image;
-            } else if (image != null) {
-                var path = "wwwroot//image";
-                Directory.CreateDirectory (path);
-                var Filename = Path.Combine (path, Path.GetFileName (image.FileName));
-                image.CopyTo (new FileStream (Filename, FileMode.Create));
-                file = Filename.Substring (8).Replace (@"\", "/");
-                Console.WriteLine (file);
-                Console.WriteLine ("ini nama file");
-            }
-            var get = _AppDbContext.Applicant.Find (Id);
-            get.Image = file;
-            get.Name = name;
-            get.Email = email;
-            get.Address = address;
-            get.Phone = phone;
-            get.Occupation = occupation;
-            get.Placement = placement;
-            get.EmergencyContact = emergency;
-            _AppDbContext.SaveChanges ();
-            ViewBag.items = get;
-            return View ("ApplicantDetail");
-        }
 
-        public IActionResult ApplicantAddData (string name, string email, string address, string phone, string gender, DateTime birth_date, string birth_place, string occupation, string placement, string emergency, string status, IFormFile image, int addagain = 0) {
-            var path = "wwwroot//image";
-            Directory.CreateDirectory (path);
-            var Filename = Path.Combine (path, Path.GetFileName (image.FileName));
-            image.CopyTo (new FileStream (Filename, FileMode.Create));
-            var file = Filename.Substring (8).Replace (@"\", "/");
-            Console.WriteLine (file);
-            Console.WriteLine ("ini nama file");
-            var obj = new Applicant () {
-                Image = file,
-                Name = name,
-                Email = email,
-                Address = address,
-                Phone = phone,
-                BirthDate = birth_date,
-                BirthPlace = birth_place,
-                Gender = gender,
-                Occupation = occupation,
-                Placement = placement,
-                EmergencyContact = emergency,
-                Status_Proccess = "unproccess"
+        public IActionResult AddData (string remark, DateTime start, DateTime end, int EmployeeId) {
+            var get_employee = _AppDbContext.Employee.Find(EmployeeId);
+            var obj = new LeaveRequest(){
+                EmployeeID = (get_employee.Id).ToString(),
+                Remarks = remark,
+                status = "pending",
+                EmployeeDepartment = get_employee.Placement,
+                EmployeeName = get_employee.Name,
+                EmployeeOccupation = get_employee.Occupation,
+                Start = start,
+                End = end
             };
-            _AppDbContext.Add (obj);
-            _AppDbContext.SaveChanges ();
-            if (addagain == 1) {
-                return View ("AddApplicant");
-            } else if (addagain == 0) {
-                return RedirectToAction ("ApplicantList", "Applicant");
-            }
-            return Ok ();
+            _AppDbContext.LeaveRequests.Add(obj);
+            _AppDbContext.SaveChanges();
+            return RedirectToAction("LeaveRequestList","LeaveRequest");
         }
-
+        public IActionResult AddLeaveRequest () {
+            return View ();
+        }
         public IActionResult Privacy () {
             return View ();
         }

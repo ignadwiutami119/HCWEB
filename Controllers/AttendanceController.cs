@@ -42,6 +42,12 @@ namespace HC_WEB_FINALPROJECT.Controllers
             ViewBag.items = get_employee;
             return View("AttendanceHome");
         }
+        public IActionResult Search(string keyword)
+        {
+            var get = from a in _AppDbContext.Employee where (a.Name.Contains (keyword) || a.Phone.Contains(keyword) || a.Address.Contains (keyword) || a.Email.Contains (keyword) || a.Occupation.Contains (keyword) || a.Placement.Contains (keyword)) select a;
+            ViewBag.items = get;
+            return View("AttendanceHome");
+        }
         public IActionResult AttendanceThisMonth(int Id)
         {
             var get_Attendance = from u in _AppDbContext.Attendances where u.EmployeeId == Id.ToString() select u;
