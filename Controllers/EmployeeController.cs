@@ -235,7 +235,8 @@ namespace HC_WEB_FINALPROJECT.Controllers
                 "Placement",
                 "Address",
                 "Status",
-                "EmergencyContact"
+                "EmergencyContact",
+                "Image"
             };
             var items = (from item in _AppDbContext.Employee
                          select new object[]
@@ -251,7 +252,8 @@ namespace HC_WEB_FINALPROJECT.Controllers
                                        $"{item.Placement}",
                                        $"{item.Address}",
                                        $"{item.Status}",
-                                       $"{item.EmergencyContact}"
+                                       $"{item.EmergencyContact}",
+                                       $"{item.Image}"
                          }).ToList();
 
             var itemcsv = new StringBuilder();
@@ -277,11 +279,12 @@ namespace HC_WEB_FINALPROJECT.Controllers
                 "Placement",
                 "Address",
                 "Status",
-                "EmergencyContact"
+                "EmergencyContact",
+                "Image"
             };
             var itemcsv = new StringBuilder();
             byte[] buffer = Encoding.ASCII.GetBytes($"{string.Join(",", comlumHeadrs)}\r\n{itemcsv.ToString()}");
-            return File(buffer, "text/csv", $"Employees.csv");
+            return File(buffer, "text/csv", $"EmployeeFormat.csv");
         }
 
 
@@ -303,7 +306,8 @@ namespace HC_WEB_FINALPROJECT.Controllers
                 "Departement",
                 "Address",
                 "Status",
-                "Emergency Contact"
+                "Emergency Contact",
+                "Image"
             };
             var items = new List<object[]>();
             if (paging.Search == null)
@@ -323,7 +327,8 @@ namespace HC_WEB_FINALPROJECT.Controllers
                                        $"{item.Placement}",
                                        $"{item.Address}",
                                        $"{item.Status}",
-                                       $"{item.EmergencyContact}"
+                                       $"{item.EmergencyContact}",
+                                       $"{item.Image}"
                          }).ToList();
             }
             else if (paging.Search != null)
@@ -343,7 +348,8 @@ namespace HC_WEB_FINALPROJECT.Controllers
                                        $"{item.Placement}",
                                        $"{item.Address}",
                                        $"{item.Status}",
-                                       $"{item.EmergencyContact}"
+                                       $"{item.EmergencyContact}",
+                                       $"{item.Image}"
                          }).ToList();
             }
 

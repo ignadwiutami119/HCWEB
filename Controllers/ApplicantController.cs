@@ -375,6 +375,29 @@ namespace HC_WEB_FINALPROJECT.Controllers
             return File(buffer, "text/csv", $"AllApplicant.csv");
         }
 
+        public IActionResult CSVformat()
+        {
+            var comlumHeadrs = new string[] {
+                "Name",
+                "Email",
+                "Phone",
+                "Gender",
+                "BirthDate",
+                "BirthPlace",
+                "Occupation",
+                "Placement",
+                "Address",
+                "Status Proccess",
+                "Emergency Contact",
+                "Image",
+                 "CV"
+            };
+
+            var itemcsv = new StringBuilder();
+            byte[] buffer = Encoding.ASCII.GetBytes($"{string.Join(",", comlumHeadrs)}\r\n{itemcsv.ToString()}");
+            return File(buffer, "text/csv", $"ApplicantFormat.csv");
+        }
+
         // [Authorize]
         public IActionResult ExportCSV()
         {
