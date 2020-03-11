@@ -389,13 +389,13 @@
       <th scope="col">Occupation</th>
       <th scope="col">Department</th>
     </tr>
-  </thead>    
+  </thead>    if(applicantView!=null){
     foreach(var a in applicantView) { 
             <tr>
                 <td><b>@a.Email</b></td>
                 <td>@a.Occupation</td>
                 <td>@a.Placement</td>
-            </tr> 
+            </tr> }
             } 
     }
  </tbody> 

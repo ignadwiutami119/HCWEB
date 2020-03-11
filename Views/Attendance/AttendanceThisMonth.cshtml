@@ -1,19 +1,33 @@
 @{
     Layout = "_LayoutHC";
 }
-
-<br><br><br><br><br><br>
-<div class="container" style="background: #D6EAF8;">
-<div style="width:850px;margin-left:130px;margin-top:50px; margin-bottom:50px; border:solid" class=" text-center">
+<!DOCTYPE html>
+<html>
+  <style>
+    body {
+  background-color: #EBF5FB;
+         }
+  </style>
+<body>
+  <br><br><br><br><br><br>
+  @{var employ = ViewBag.Employee;
+  var dt = DateTime.Now;
+  var month_ = dt.ToString("MMMM yyyy");
+  <h3>Attendance of</h3>
+  <h2>@employ.Name</h2>
+  <h3>on @month_</h3>
+  }
+<div class="container">
+<div style="width:915px;margin-left:80px;margin-top:50px; margin-bottom:50px;" class=" text-center">
   <table style="background:white" class="table text-left">
             <tbody>
     <br>
     <thead class="thead-dark">
     <tr>
-      <th class="text-center" scope="col">Date</th>
-      <th class="text-center" scope="col">Clock In</th>
-      <th class="text-center" scope="col">Clock Out</th>
-      <th class="text-center" scope="col">Status</th>
+      <th class="text-center" style="background: #1F618D; color:white" scope="col">Date</th>
+      <th class="text-center" style="background: #1F618D; color:white" scope="col">Clock In</th>
+      <th class="text-center" style="background: #1F618D; color:white" scope="col">Clock Out</th>
+      <th class="text-center" style="background: #1F618D; color:white" scope="col">Status</th>
     </tr>
   </thead>
     @{
@@ -57,3 +71,4 @@
     }
  </tbody> 
     </table></div></div><br><br><br>
+    </body></html>

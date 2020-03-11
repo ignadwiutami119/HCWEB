@@ -323,7 +323,7 @@ background: #ffffff;
       <th class="text-center" scope="col">Department</th>
       <th class="text-center" scope="col">Start</th>
       <th class="text-center" scope="col">End</th>
-      <th class="text-center" scope="col"></th>
+      <th class="text-center" scope="col">Remark</th>
     </tr>
   </thead>    
     foreach(var a in Leave) { 
@@ -334,7 +334,7 @@ background: #ffffff;
                 <td class="text-center">@a.EmployeeDepartment</td>
                 <td class="text-center">@a.Start</td>
                 <td class="text-center">@a.End</td>
-                <td class="text-left"><a id="btn-@a.Id" onclick="javascript:ApplicantDetail(this)"><span class="glyphicon glyphicon-chevron-right"></span></a></td>
+                <td class="text-center">@a.Remarks</td>
             @{
             if(a.status=="pending"){
                 <td class="text-right"><button id="btn-@a.Id" class="btn" style="background:#FF5693; color:white" onclick="javascript:Approve(this)">Approve</button>  <button id="btn-@a.Id" class="btn" style="background:#3E3E3E; color:white" onclick="javascript:Reject(this)">Reject</button></td>}

@@ -7,102 +7,120 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using HC_WEB_FINALPROJECT.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
-namespace HC_WEB_FINALPROJECT.Controllers {
-    public class HomeController : Controller {
+namespace HC_WEB_FINALPROJECT.Controllers
+{
+    public class HomeController : Controller
+    {
 
         public IConfiguration Configuration;
         private AppDbContext _AppDbContext;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController (ILogger<HomeController> logger, AppDbContext appDbContext, IConfiguration configuration) {
+        public HomeController(ILogger<HomeController> logger, AppDbContext appDbContext, IConfiguration configuration)
+        {
             _AppDbContext = appDbContext;
             _logger = logger;
             Configuration = configuration;
         }
 
-        public IActionResult Index () {
-            return View ();
+        public IActionResult Index()
+        {
+            return View();
         }
 
-        public IActionResult Login (string Email, string Password) {
-            IActionResult response = Unauthorized ();
+        public IActionResult Login(string Email, string Password)
+        {
+            IActionResult response = Unauthorized();
 
-            var user = AuthenticatedUser (Email, Password);
-            if (user != null) {
-                var token = GenerateJwtToken (user);
-                HttpContext.Session.SetString ("JWTToken", token);
-                var get = HttpContext.Session.GetString ("JWTToken");
+            var user = AuthenticatedUser(Email, Password);
+            if (user != null)
+            {
+                var token = GenerateJwtToken(user);
+                HttpContext.Session.SetString("JWTToken", token);
+                var get = HttpContext.Session.GetString("JWTToken");
                 var cek = from x in _AppDbContext.Account select x;
-                foreach (var item in cek) {
-                    if (item.Email == Email && item.Password == Password) {
-                        HttpContext.Response.Cookies.Append ("email", Email);
-                        return View ("Dashboard");
+                foreach (var item in cek)
+                {
+                    if (item.Email == Email && item.Password == Password)
+                    {
+                        HttpContext.Response.Cookies.Append("email", Email);
+                        return RedirectToAction("Dashboard", "Home");
                     }
                 }
             }
-            return View ("Index");
+            return View("Index");
         }
 
-        public IActionResult Logout () {
-            HttpContext.Session.Remove ("JWTToken");
-            return RedirectToAction ("Index", "Home");
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("JWTToken");
+            return RedirectToAction("Index", "Home");
         }
 
-        private string GenerateJwtToken (Account user) {
-            var secuityKey = new SymmetricSecurityKey (Encoding.UTF8.GetBytes (Configuration["Jwt:Key"]));
-            var credentials = new SigningCredentials (secuityKey, SecurityAlgorithms.HmacSha256);
+        private string GenerateJwtToken(Account user)
+        {
+            var secuityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]));
+            var credentials = new SigningCredentials(secuityKey, SecurityAlgorithms.HmacSha256);
 
-            var claims = new [] {
+            var claims = new[] {
                 new Claim (JwtRegisteredClaimNames.Sub, Convert.ToString (user.Email)),
                 new Claim (JwtRegisteredClaimNames.Jti, Guid.NewGuid ().ToString ())
             };
 
-            var token = new JwtSecurityToken (
+            var token = new JwtSecurityToken(
                 issuer: Configuration["Jwt:Issuer"],
-                audience : Configuration["Jwt:Audience"],
+                audience: Configuration["Jwt:Audience"],
                 claims,
-                expires : DateTime.Now.AddHours (2),
-                signingCredentials : credentials);
-            var encodedToken = new JwtSecurityTokenHandler ().WriteToken (token);
+                expires: DateTime.Now.AddHours(2),
+                signingCredentials: credentials);
+            var encodedToken = new JwtSecurityTokenHandler().WriteToken(token);
             return encodedToken;
         }
 
-        private Account AuthenticatedUser (string Email, string Password) {
+        private Account AuthenticatedUser(string Email, string Password)
+        {
             Account user = null;
             var get = from i in _AppDbContext.Account select i;
-            foreach (var i in get) {
-                if (i.Email == Email && i.Password == Password) {
-                    user = new Account {
-                    Email = Email,
-                    Password = Password,
+            foreach (var i in get)
+            {
+                if (i.Email == Email && i.Password == Password)
+                {
+                    user = new Account
+                    {
+                        Email = Email,
+                        Password = Password,
                     };
                 }
             }
             return user;
         }
 
-        public IActionResult Dashboard () {
+        // [Authorize]
+        public IActionResult Dashboard()
+        {
             var now = DateTime.Now;
-            var presence = from a in _AppDbContext.Attendances where a.ClockIn.Day  == now.Day && a.ClockIn.Month == now.Month && a.ClockIn.Year == now.Year select a;
+            var presence = from a in _AppDbContext.Attendances where a.ClockIn.Day == now.Day && a.ClockIn.Month == now.Month && a.ClockIn.Year == now.Year select a;
             var presenceCount = presence.Count();
             var Employee = from a in _AppDbContext.Employee select a;
             var Female = from a in _AppDbContext.Employee where a.Gender == "female" select a;
             var Male = from a in _AppDbContext.Employee where a.Gender == "male" select a;
             var Applicant = from a in _AppDbContext.Applicant where a.Status_Proccess == "unproccess" select a;
-            var ApplicantView = (from a in _AppDbContext.Applicant where a.Status_Proccess == "unproccess" select a).Take(1);
-            foreach(var a in ApplicantView){
+            var ApplicantView = (from a in _AppDbContext.Applicant where a.Status_Proccess == "unproccess" select a).Take(4);
+            foreach (var a in ApplicantView)
+            {
                 Console.WriteLine(a.Name);
                 Console.WriteLine("inicuy");
             }
             var CountApplicant = Applicant.Count();
-            var countFemale =  Female.Count();
-            var countMale =  Male.Count();
+            var countFemale = Female.Count();
+            var countMale = Male.Count();
             var countEmployee = Employee.Count();
             var Leave = from a in _AppDbContext.LeaveRequests where (a.status == "approve") && (now >= a.Start && now <= a.End) select a;
             var countLeave = Leave.Count();
@@ -116,16 +134,18 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             ViewBag.Male = countMale;
             ViewBag.ApplicantView = ApplicantView;
             ViewBag.ApplicantCount = CountApplicant;
-            return View ();
+            return View();
         }
 
-        public IActionResult Privacy () {
-            return View ();
+        public IActionResult Privacy()
+        {
+            return View();
         }
 
-        [ResponseCache (Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error () {
-            return View (new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

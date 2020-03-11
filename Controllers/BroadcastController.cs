@@ -26,6 +26,7 @@ namespace HC_WEB_FINALPROJECT.Controllers
         }
 
 
+        // [Authorize]
         public IActionResult Add(string title, string body)
         {
             Broadcast broad = new Broadcast()
@@ -41,7 +42,7 @@ namespace HC_WEB_FINALPROJECT.Controllers
             foreach (var a in get)
             {
                 message.To.Add(new MailboxAddress(a.Name, a.Email));
-                message.From.Add(new MailboxAddress("HR","HRAPP@hr.com"));
+                message.From.Add(new MailboxAddress("HR", "HRAPP@hr.com"));
                 message.Subject = title;
                 message.Body = new TextPart("plain")
                 {
@@ -59,7 +60,9 @@ namespace HC_WEB_FINALPROJECT.Controllers
             return View("Broadcast");
         }
 
-        public IActionResult Broadcast(){
+        // [Authorize]
+        public IActionResult Broadcast()
+        {
             return View();
         }
 

@@ -3,8 +3,9 @@
 }
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-<style>.card {
+<html>
+<style>
+    .card {
     padding-top: 20px;
     margin: 10px 0 20px 0;
     background-color: rgba(214, 224, 226, 0.2);
@@ -264,22 +265,22 @@ background: #ffffff;
 }
 
 </style>
-
+<body>
  <br><br>
 
 <div class="container">
-    <div class="column">
                 <p class="text-center" style="color:#FF5693; font-size:33px">Applicant</p> <br><br>
-    <div class="col-lg-12 col-sm-5"><div class="column"> 
-<form style="float:left;margin-bottom:6x" method="post" enctype="multipart/form-data" asp-action="Import" asp-controller="Employee">
+    <div class="column">
+    <div class="col-lg-12 col-sm-5"><div class="column text-right"> 
+<form asp-action="Importy" asp-controller="Applicant" style="float:left;" method="post" enctype="multipart/form-data">
             <div class="column">
-            <input name="file" type="file" value="file" required />
-            <button class="btn btn-info" onclick="location.href='/Applicant/Import'" type="submit"><b>Import CSV</b></button>
+            <input name="file" type="file" value="file" required />       
             </div>
-</form> 
-<button style="float:right" onclick="location.href='/Applicant/ExportCSV'" class="btn btn-success"><b>Export CSV</b></button>
-<button style="float:right" onclick="location.href='/Applicant/ExportAll'" class="btn btn-success"><b>Export CSV (All)</b></button>
-<button style="float:right" onclick="location.href='/Applicant/AddApplicant'" class="btn btn-success"><b>New Applicant</b></button> </div></div> </div>
+            <button class="btn btn-success"  type="submit"><b>Import CSV</b></button>
+</form>  
+<button onclick="location.href='/Applicant/ExportCSV'" class="btn btn-success"><b>Export CSV</b></button>
+<button onclick="location.href='/Applicant/ExportAll'" class="btn btn-success"><b>Export CSV (All)</b></button>
+<button onclick="location.href='/Applicant/AddApplicant'" class="btn btn-success"><b>New Applicant</b></button> </div></div> </div>
 
 
         <div class="col-lg-12 col-sm-5">
@@ -333,6 +334,7 @@ background: #ffffff;
   </thead>
     @{
     var items = ViewBag.items;
+    if(items!=null){
     foreach(var a in items) { 
             <tr>
         <input type="hidden"  id="Id-@a.Id" value="@a.Id">
@@ -345,7 +347,7 @@ background: #ffffff;
                 <td class="text-right"><button id="btn-@a.Id" class="btn" style="background:#FF5693; color:white" onclick="javascript:NextProccess(this)">Next Proccess</button>  <button id="btn-@a.Id" class="btn" style="background:#3E3E3E; color:white" onclick="javascript:Reject(this)">Reject</button></td>
             </tr> 
             } 
-    }
+    } }
  </tbody> 
     </table>
                 </div>
@@ -356,7 +358,7 @@ background: #ffffff;
 	</div>
 </div>
   </div>
-</div>
+</div></body>
 
 
 <div class="container">
@@ -379,7 +381,7 @@ background: #ffffff;
       <a class="page-link" href="">Next</a>
     </li> }
   </ul>
-<br><br><br></div></div>
+<br><br><br></div></div></html>
 
 
 
