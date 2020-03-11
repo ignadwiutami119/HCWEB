@@ -23,7 +23,7 @@ namespace HC_WEB_FINALPROJECT.Controllers
             _logger = logger;
         }
 
-
+        // [Authorize]
         public IActionResult AttendanceList(int Id)
         {
             var get_Attendance = from u in _AppDbContext.Attendances where u.EmployeeId == Id.ToString() select u;
@@ -36,18 +36,23 @@ namespace HC_WEB_FINALPROJECT.Controllers
             return View("AttendanceList");
         }
 
+        // [Authorize]
         public IActionResult AttendanceHome()
         {
             var get_employee = from a in _AppDbContext.Employee select a;
             ViewBag.items = get_employee;
             return View("AttendanceHome");
         }
+
+        // [Authorize]
         public IActionResult Search(string keyword)
         {
-            var get = from a in _AppDbContext.Employee where (a.Name.Contains (keyword) || a.Phone.Contains(keyword) || a.Address.Contains (keyword) || a.Email.Contains (keyword) || a.Occupation.Contains (keyword) || a.Placement.Contains (keyword)) select a;
+            var get = from a in _AppDbContext.Employee where (a.Name.Contains(keyword) || a.Phone.Contains(keyword) || a.Address.Contains(keyword) || a.Email.Contains(keyword) || a.Occupation.Contains(keyword) || a.Placement.Contains(keyword)) select a;
             ViewBag.items = get;
             return View("AttendanceHome");
         }
+
+        // [Authorize]
         public IActionResult AttendanceThisMonth(int Id)
         {
             var get_Attendance = from u in _AppDbContext.Attendances where u.EmployeeId == Id.ToString() select u;
@@ -56,6 +61,8 @@ namespace HC_WEB_FINALPROJECT.Controllers
             ViewBag.Employee = get_employee;
             return View();
         }
+
+        // [Authorize]
         public IActionResult Create_ClockIn(int Id, string Remark)
         {
             var employee = _AppDbContext.Employee.Find(Id);
@@ -74,6 +81,8 @@ namespace HC_WEB_FINALPROJECT.Controllers
             }
             return RedirectToAction("AttendanceHome", "Attendance");
         }
+
+        // [Authorize]
         public IActionResult Create_ClockOut(int Id, string Remark)
         {
             var employee = _AppDbContext.Employee.Find(Id);
@@ -90,18 +99,23 @@ namespace HC_WEB_FINALPROJECT.Controllers
             return RedirectToAction("AttendanceHome", "Attendance");
         }
 
+        // [Authorize]
         public IActionResult ClockIn(int Id)
         {
             var get = _AppDbContext.Employee.Find(Id);
             ViewBag.Employee = get;
             return View();
         }
+
+        // [Authorize]
         public IActionResult ClockOut(int Id)
         {
             var get = _AppDbContext.Employee.Find(Id);
             ViewBag.Employee = get;
             return View();
         }
+
+        // [Authorize]
         public IActionResult Privacy()
         {
             return View();
