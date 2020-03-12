@@ -1,17 +1,32 @@
 @{
     Layout = "_LayoutHC";
 }
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
 <style>
-       body {
-  background-color: #EBF5FB;
-         }
-
-    .card {
+.card {
     padding-top: 20px;
     margin: 10px 0 20px 0;
+    background-color:#D4E6F1;
+    border-top-width: 0;
+    border-bottom-width: 2px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.cardimage {
+    margin: 10px 0 0px 0;
     background-color: rgba(214, 224, 226, 0.2);
     border-top-width: 0;
     border-bottom-width: 2px;
@@ -47,7 +62,7 @@
     border: 0;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    border-radius: 50%;
+    border-radius: 5%;
 }
 
 .card .card-heading.image .card-heading-header {
@@ -117,7 +132,7 @@
 .card.people {
     position: relative;
     display: inline-block;
-    width: 500px;
+    width: 170px;
     height: 300px;
     padding-top: 0;
     margin-left: 20px;
@@ -196,30 +211,16 @@
 
 .card.hovercard {
     position: relative;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-top: 0;
     overflow: hidden;
     text-align: center;
     background-color: #D6EAF8;
 }
 
-.btn:focus{
-background: #ffffff;
-}
-  
 .card.hovercard .cardheader {
-    background-color: rgba(214, 224, 226, 0.2);
-    height: 500px;
-}
-.card.hovercard .cardjudul {
-    background: #0c0f11;
+    background: #D4E6F1;
     background-size: cover;
-    height: 350px;
-}
-
-.card.hovercard .body {
-    background-size: cover;
-    height: 290px;
+    height: 90px;
 }
 
 .card.hovercard .avatar {
@@ -236,7 +237,7 @@ background: #ffffff;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    border: 5px solid rgba(20,105,148,0.5);
+    border: 5px solid rgba(255,255,255,0.5);
 }
 
 .card.hovercard .info {
@@ -247,7 +248,7 @@ background: #ffffff;
     margin-bottom: 4px;
     font-size: 24px;
     line-height: 1;
-    color: #262626;
+    color: #ffffff;
     vertical-align: middle;
 }
 
@@ -264,66 +265,55 @@ background: #ffffff;
     margin-bottom: 17px;
 }
 
-.navbar:active{
-    color:#5DADE2;
-}
-
 </style>
+          
+<br><br><br><br>
 
- <br><br>
+	
+<div style="margin-left:130px" class="col-lg-9 col-sm-8">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+	<div class="row justify-content-center">
+		<div class="col-18 col-md-9 col-lg-12 pb-5">
+                    <!--Form with header-->
+                        <div class="card border-primary rounded-0">
+                            <div class="card-header p-0">
+                                <div style="background:#1A5276 ; padding-bottom:18px; padding-top:15px" class="text-center py-2"><p></p>
+                                    <h3 style="color:#F5FBFF  "><b>Send Your Warning Message</b></h3>
+                                    @* <p style="color:#D6EAF8" class="m-0">@Employee.Name</p> *@
+                                </div>
+                            </div>
+                            <div class="card-body p-3">@{var employee = ViewBag.Employee;}
+                                <p>Send Warning Message to This Employee</p>
+                                <img style="width:90px" src="@employee.Image">
+                                <p>@employee.Name</p><br>
+                                <form method="POST" id="form1">
+                                <!--Body-->
+                                <div class="form-group">
+                                    <div class="text-center">
+                                        <input type="hidden" name="Id" value="@employee.Id">
+                                        <input type="textarea" style="background:#F7F9F9;" class="form-control" name="title" placeholder="Title" required>
+                                    </div>
+                                </div>                      
+                                <div class="form-group">
+                                    <div class="text-center">
+                                        <input type="textarea" style="background:#F7F9F9;" class="form-control" name="body" placeholder="Type your message" required>
+                                    </div>
+                                </div>                      
+                                <div class="text-center">
+                                    <button asp-action="SendMessage" asp-controller="Employee" class="btn btn-success btn-block rounded-0 py-2">Send</button>
+                                </div>
+                                </form>
+                            </div>
+                            <br>
 
-<div class="container">
-    <div class="column">
-        <div class="col-lg-12 col-sm-5">
-        <p class="text-center" style="color:#FF5693; font-size:33px">Attendance</p> <br><br>
-    <div class="col-lg-12 col-sm-5"><div class="column text-right" style="margin-bottom:1px">
-        <form method="POST">
-<button asp-action="Search" asp-controller="Attendance" style="float:right" class="btn btn-success">Search</button>
-<input type="text" class="form-control" style="width: 350px;float:right" name="keyword" placeholder="Type to search">
-</form></div><br>
-<table style="background:white; box-shadow: 1px 1px 10px #5499C7;" class="table text-left"> 
-            <tbody>
-   @{
-    var items = ViewBag.items;
-    <br>
-    <thead class="thead-dark">
-    <tr>
-      <th style="background:#1F618D; color:white" scope="col">Name</th>
-      <th style="background:#1F618D; color:white" scope="col">Occupation</th>
-      <th style="background:#1F618D; color:white" scope="col">Department</th>
-      <th style="background:#1F618D; color:white" scope="col"></th>
-    </tr>
-  </thead>    
-    foreach(var a in items) { 
-            <tr>
-        <input type="hidden"  id="Id-@a.Id" value="@a.Id">
-                @* <td><img style="width:17%" src="@a.Image"></td> *@
-                <td><b>@a.Name</b></td>
-                <td class="text-left">@a.Occupation</td>
-                <td class="text-left">@a.Placement</td>
-                <td class="text-center"><a id="btn-@a.Id" onclick="javascript:AttendanceDetail(this)"><span class="glyphicon glyphicon-chevron-right"></span></a></td>
-            </tr> 
-            } 
-    }
- </tbody> 
-    </table>
-                </div>
-            <br>
-        </div>
-    </div>
-</div>
+                        </div>
+                  
+                    <!--Form with header-->
+
+
+            </div>
 	</div>
 </div>
-  </div>
-</div><br><br><br><br>
 
-<script type="text/javascript">
-function AttendanceDetail(btn)
-{
-    var id = btn.id;
-    id = id.substring(4,id.Length);
-    var identify = "Id-"+id;
-    var Id = document.getElementById(identify).value;
-    location.href='/Attendance/AttendanceList?Id='+Id;
-}
-</script>
+</div></div>
+<br><br><br>

@@ -9,16 +9,16 @@
          }
   </style>
 <body>
-  <br><br><br><br><br><br>
+  <br><br>
   @{var employ = ViewBag.Employee;
   var dt = DateTime.Now;
   var month_ = dt.ToString("MMMM yyyy");
-  <h3>Attendance of</h3>
-  <h2>@employ.Name</h2>
-  <h3>on @month_</h3>
+  <div style="margin-left: 70px;">
+  <h2>Attendance of @employ.Name</h2>
+  <p style="width:200px">On @month_</p></div>
   }
 <div class="container">
-<div style="width:915px;margin-left:80px;margin-top:50px; margin-bottom:50px;" class=" text-center">
+<div style="width:1000px;margin-left:50px;margin-top:10px; margin-bottom:30px;" class=" text-center">
   <table style="background:white" class="table text-left">
             <tbody>
     <br>

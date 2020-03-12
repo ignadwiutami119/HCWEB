@@ -45,6 +45,8 @@ namespace HC_WEB_FINALPROJECT.Controllers
                 var token = GenerateJwtToken(user);
                 HttpContext.Session.SetString("JWTToken", token);
                 var get = HttpContext.Session.GetString("JWTToken");
+                Console.WriteLine(get);
+                Console.WriteLine("ini JWT token");
                 var cek = from x in _AppDbContext.Account select x;
                 foreach (var item in cek)
                 {
@@ -106,6 +108,7 @@ namespace HC_WEB_FINALPROJECT.Controllers
         public IActionResult Dashboard()
         {
             var now = DateTime.Now;
+            var Event = from a in _AppDbContext.Events where a.day.Date.AddDays(-3) == now.Date select a;
             var presence = from a in _AppDbContext.Attendances where a.ClockIn.Day == now.Day && a.ClockIn.Month == now.Month && a.ClockIn.Year == now.Year select a;
             var presenceCount = presence.Count();
             var Employee = from a in _AppDbContext.Employee select a;
@@ -122,11 +125,12 @@ namespace HC_WEB_FINALPROJECT.Controllers
             var countFemale = Female.Count();
             var countMale = Male.Count();
             var countEmployee = Employee.Count();
-            var Leave = from a in _AppDbContext.LeaveRequests where (a.status == "approve") && (now >= a.Start && now <= a.End) select a;
+            var Leave = from a in _AppDbContext.LeaveRequests where (a.status == "approve") && (now.Date >= a.Start.Date && now.Date <= a.End.Date) select a;
             var countLeave = Leave.Count();
             Console.WriteLine("CEK ISI");
             Console.WriteLine(countLeave);
             Console.WriteLine(countEmployee);
+            ViewBag.Event = Event;
             ViewBag.Leave = countLeave;
             ViewBag.Presence = presenceCount;
             ViewBag.Employee = countEmployee;
@@ -134,6 +138,9 @@ namespace HC_WEB_FINALPROJECT.Controllers
             ViewBag.Male = countMale;
             ViewBag.ApplicantView = ApplicantView;
             ViewBag.ApplicantCount = CountApplicant;
+            var leavereq = from a in _AppDbContext.LeaveRequests where a.status == "pending" select a;
+            var countReq = leavereq.Count();
+            ViewBag.Req = countReq;
             return View();
         }
 

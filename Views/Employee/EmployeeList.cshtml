@@ -2,7 +2,7 @@
     Layout = "_LayoutHC";
 }
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  @* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> *@
 
 <style>.card {
     padding-top: 20px;
@@ -239,7 +239,7 @@ background: #ffffff;
 }
 
 .card.hovercard .info .title {
-    margin-bottom: 4px;
+    margin-bottom: 0px;
     font-size: 24px;
     line-height: 1;
     color: #262626;
@@ -256,7 +256,7 @@ background: #ffffff;
 
 .card.hovercard .bottom {
     padding: 0 20px;
-    margin-bottom: 17px;
+    margin-bottom: 0px;
 }
 
 .navbar:active{
@@ -271,7 +271,7 @@ background: #ffffff;
     <div class="column">
         <h2 class="text-center" style="color:#FF5693; font-size:33px">Employee List</h2> <br><br>
     <div class="col-lg-12 col-sm-5"><div class="column text-right"> 
-        <a onclick="location.href='/Employee/CSVformat'">download csv format here</a>
+<a onclick="location.href='/Employee/CSVformat'">download csv format here</a>
 <form asp-action="Importy" asp-controller="Employee" style="float:left;" method="post" enctype="multipart/form-data">
             <div class="column">
             <input name="file" type="file" value="file" required />       
@@ -285,26 +285,28 @@ background: #ffffff;
 
         <div class="col-lg-12 col-sm-5">
              <div class="card hovercard">
-                    <div class="row" style="background-color: #1F618D;">
-                   <div class="col-lg-3 col-sm-3">
-                   </div>
-                   <div class="col-lg-2 col-sm-2">
-                       <br>
-                    <a onclick="location.href='/Employee/EmployeeList?status_employee=permanent'" style="color:#F5FBFF; font-family:Helvetica, sans-serif; "><b>Permanent</b></a>
-                   <br>
-                   </div> 
-                   <div class="col-lg-2 col-sm-2">
-                       <br>
-                    <a onclick="location.href='/Employee/EmployeeList?status_employee=contract'" style="color:#F5FBFF; font-family:Helvetica, sans-serif"><b>Contract</b></a>
-                   <h2></h2>
-                   </div>
-                   <div class="col-lg-2 col-sm-2">
-                       <br>
-                    <a onclick="location.href='/Employee/EmployeeList?status_employee=probation'" style="color:#F5FBFF; font-family:Helvetica, sans-serif"><b>Probation</b></a>
-                   <br>
-                   </div>
-                   <div class="col-lg-3 col-sm-3">
-                   </div>
+                   <div class="row">
+                        @{ var page = ViewBag.Paging;
+                        if(page.StatusPage == "permanent"){
+                    <ul> 
+                        <li style="width:370px"><a style="background:#FF5693; color:#F0F9FF" href="/Employee/EmployeeList?Status_Employee=permanent">Permanent</a></li>
+                        <li style="width:370px"><a style="color:#F0F9FF" href="/Employee/EmployeeList?Status_Employee=contract">Contract</a></li>
+                        <li style="width:370px"><a style="color:#F0F9FF" href="/Employee/EmployeeList?Status_Employee=probation">Probation</a></li>
+                    </ul>}
+                    else if(page.StatusPage == "contract"){
+                    <ul> 
+                        <li style="width:370px"><a style="color:#F0F9FF" href="/Employee/EmployeeList?Status_Employee=permanent">Permanent</a></li>
+                        <li style="width:370px"><a style="background:#FF5693; color:#F0F9FF" href="/Employee/EmployeeList?Status_Employee=contract">Contract</a></li>
+                        <li style="width:370px"><a style="color:#F0F9FF" href="/Employee/EmployeeList?Status_Employee=probation">Probation</a></li>
+                    </ul>
+                    }else {
+                    <ul> 
+                        <li style="width:370px"><a style="color:#F0F9FF" href="/Employee/EmployeeList?Status_Employee=permanent">Permanent</a></li>
+                        <li style="width:370px"><a style="color:#F0F9FF" href="/Employee/EmployeeList?Status_Employee=contract">Contract</a></li>
+                        <li style="width:370px"><a style="background:#FF5693; color:#F0F9FF" href="/Employee/EmployeeList?Status_Employee=probation">Probation</a></li>
+                    </ul>
+                    }
+                        }
                    </div>
                    <br>
                    <div class="col-lg-12 col-sm-4">
@@ -364,7 +366,7 @@ background: #ffffff;
 <nav aria-label="...">
   <ul style="margin-left:12px" class="pagination marginleft">
     @{
-      var paging = ViewBag.page;
+      var paging = ViewBag.Paging;
     <li class="page-item">
       <a class="page-link" href="">Previous</a>
     </li>
@@ -378,6 +380,7 @@ background: #ffffff;
       <a class="page-link" href="">Next</a>
     </li> }
   </ul>
+
 <br><br><br></div></div>
 
 

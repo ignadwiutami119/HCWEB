@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using HC_WEB_FINALPROJECT.Scheduler;
 
 namespace HC_WEB_FINALPROJECT
 {
@@ -62,6 +63,9 @@ namespace HC_WEB_FINALPROJECT
                     ValidateAudience=false,
                 };
             });
+            // services.AddHostedService<BirthdayService>();
+            // services.AddHostedService<EventService>();
+            
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -82,13 +86,13 @@ namespace HC_WEB_FINALPROJECT
             app.UseCookiePolicy ();
             app.UseSession ();
             //Add JWToken to all incoming HTTP Request Header
-            // app.Use (async (context, next) => {
-            //     var JWToken = context.Session.GetString ("JWTToken");
-            //     if (!string.IsNullOrEmpty (JWToken)) {
-            //         context.Request.Headers.Add ("Authorization", "Bearer " + JWToken);
-            //     }
-            //     await next ();
-            // });
+            app.Use (async (context, next) => {
+                var JWToken = context.Session.GetString ("JWTToken");
+                if (!string.IsNullOrEmpty (JWToken)) {
+                    context.Request.Headers.Add ("Authorization", "Bearer " + JWToken);
+                }
+                await next ();
+            });
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

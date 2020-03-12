@@ -5,6 +5,7 @@ namespace HC_WEB_FINALPROJECT.Models
     public class AppDbContext : DbContext
     {
         public DbSet<Account> Account {get;set;}
+        public DbSet<Event> Events {get;set;}
         public DbSet<LeaveRequest> LeaveRequests {get;set;}
         public DbSet<Attendance> Attendances {get;set;}
         public DbSet<Broadcast> Broadcasts {get;set;}
