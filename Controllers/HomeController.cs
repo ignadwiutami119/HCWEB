@@ -34,6 +34,10 @@ namespace HC_WEB_FINALPROJECT.Controllers
         {
             return View();
         }
+        public IActionResult Test()
+        {
+            return View();
+        }
 
         public IActionResult Login(string Email, string Password)
         {

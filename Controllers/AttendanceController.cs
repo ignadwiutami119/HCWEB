@@ -91,7 +91,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             select a;
             var countReq = leavereq.Count ();
             ViewBag.Req = countReq;
-            return RedirectToAction ("AttendanceHome", "Attendance");
+            return (RedirectToAction("AttendanceList", new { Id = Id }));
         }
 
         [Authorize]
@@ -116,7 +116,8 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             select a;
             var countReq = leavereq.Count ();
             ViewBag.Req = countReq;
-            return RedirectToAction ("AttendanceHome", "Attendance");
+            return (RedirectToAction("AttendanceList", new { Id = Id }));
+
         }
 
         [Authorize]

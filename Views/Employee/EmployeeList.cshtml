@@ -4,7 +4,12 @@
 
   @* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> *@
 
-<style>.card {
+<style>
+    body {
+  background-color: #EBF5FB;
+         }
+
+    .card {
     padding-top: 20px;
     margin: 10px 0 20px 0;
     background-color: rgba(214, 224, 226, 0.2);
@@ -190,12 +195,13 @@
 }
 
 .card.hovercard {
+    box-shadow: 1px 1px 10px #5499C7;
     position: relative;
     padding-right: 15px;
     padding-left: 15px;
     overflow: hidden;
     text-align: center;
-    background-color: #D6EAF8;
+    background-color: white;
 }
 
 .btn:focus{
@@ -320,7 +326,7 @@ background: #ffffff;
                     </div><br>    
                 <div class="body">
 
-<table style="background:white" class="table text-left">
+<table style="background:white;" class="table table-hover text-left">
             <tbody>
    @{
     var items = ViewBag.items;
@@ -361,10 +367,10 @@ background: #ffffff;
 </div>
 
 <div class="container">
-<div class="column">
+<div class="column text-center">
 <div class="col-lg-12 col-sm-5">
 <nav aria-label="...">
-  <ul style="margin-left:12px" class="pagination marginleft">
+  <ul style="margin-left:12px; box-shadow: 1px 1px 8px #5499C7;" class="pagination marginleft">
     @{
       var paging = ViewBag.Paging;
     <li class="page-item">

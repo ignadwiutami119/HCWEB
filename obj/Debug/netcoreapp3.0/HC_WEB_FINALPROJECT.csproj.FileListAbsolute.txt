@@ -859,3 +859,6 @@ D:\HCWEB\obj\Debug\netcoreapp3.0\HC_WEB_FINALPROJECT.dll
 D:\HCWEB\obj\Debug\netcoreapp3.0\HC_WEB_FINALPROJECT.pdb
 D:\HCWEB\obj\Debug\netcoreapp3.0\Razor\Views\Employee\Warning.cshtml.g.cs
 D:\HCWEB\obj\Debug\netcoreapp3.0\Razor\Views\Event\Event.cshtml.g.cs
+G:\HCWEB\obj\Debug\netcoreapp3.0\Razor\Views\Employee\Warning.cshtml.g.cs
+G:\HCWEB\obj\Debug\netcoreapp3.0\Razor\Views\Event\Event.cshtml.g.cs
+G:\HCWEB\obj\Debug\netcoreapp3.0\Razor\Views\Home\test.cshtml.g.cs

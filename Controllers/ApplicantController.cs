@@ -82,7 +82,8 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             select a;
             var countReq = leavereq.Count ();
             ViewBag.Req = countReq;
-            return RedirectToAction ("ApplicantList", "Applicant");
+            
+            return (RedirectToAction("ApplicantList", new { status = get_applicant.Status_Proccess }));
         }
 
         [Authorize]
@@ -99,13 +100,14 @@ namespace HC_WEB_FINALPROJECT.Controllers {
         [Authorize]
         public IActionResult Reject (int Id) {
             var rmv = _AppDbContext.Applicant.Find (Id);
+            var stat = rmv.Status_Proccess;
             _AppDbContext.Applicant.Remove (rmv);
             _AppDbContext.SaveChanges ();
             var leavereq = from a in _AppDbContext.LeaveRequests where a.status == "pending"
             select a;
             var countReq = leavereq.Count ();
             ViewBag.Req = countReq;
-            return RedirectToAction ("ApplicantList", "Applicant");
+             return (RedirectToAction("ApplicantList", new { status = stat }));
         }
 
         [Authorize]

@@ -23,9 +23,6 @@ namespace HC_WEB_FINALPROJECT.Controllers {
 
         [Authorize]
         public IActionResult LeaveRequestList (string status = "pending", int _crntpage = 1) {
-            if (status == null) {
-                status = "unproccess";
-            }
             var pagesetting = _AppDbContext.LeavePagings.Find (1);
             pagesetting.Search = "";
             pagesetting.StatusPage = status;
@@ -60,7 +57,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             select a;
             var countReq = leavereq.Count ();
             ViewBag.Req = countReq;
-            return RedirectToAction ("LeaveRequestList", "LeaveRequest");
+            return (RedirectToAction("LeaveRequestList", new { status = request.status }));
         }
 
         [Authorize]
@@ -72,7 +69,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             select a;
             var countReq = leavereq.Count ();
             ViewBag.Req = countReq;
-            return RedirectToAction ("LeaveRequestList", "LeaveRequest");
+            return (RedirectToAction("LeaveRequestList", new { status = reject.status }));
         }
 
         [Authorize]
@@ -94,13 +91,14 @@ namespace HC_WEB_FINALPROJECT.Controllers {
         [Authorize]
         public IActionResult Remove (int Id) {
             var rmv = _AppDbContext.LeaveRequests.Find (Id);
+            var stat = rmv.status;
             _AppDbContext.LeaveRequests.Remove (rmv);
             _AppDbContext.SaveChanges ();
             var leavereq = from a in _AppDbContext.LeaveRequests where a.status == "pending"
             select a;
             var countReq = leavereq.Count ();
             ViewBag.Req = countReq;
-            return RedirectToAction ("LeaveRequestList", "LeaveRequest");
+            return (RedirectToAction("LeaveRequestList", new { status = stat }));
         }
 
         [Authorize]
