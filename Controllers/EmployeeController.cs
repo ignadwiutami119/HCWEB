@@ -102,7 +102,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
         }
 
         [Authorize]
-        public IActionResult EmployeeUpdateData (int Id, string name, string email, string address, string phone, string occupation, string placement, string emergency, string status, IFormFile image = null) {
+        public IActionResult EmployeeUpdateData (int Id, string name, string email, string address, string phone, string gender, DateTime birth_date, string birth_place, string occupation, string placement, string emergency1, string emergency2, string emergency3, string phone1, string phone2, string phone3, string status, IFormFile image = null) {
             var file = "";
             if (image == null) {
                 var getemployee = _AppDbContext.Employee.Find (Id);
@@ -124,7 +124,12 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             get.Phone = phone;
             get.Occupation = occupation;
             get.Placement = placement;
-            get.EmergencyContact = emergency;
+            get.EmergencyContact1 = emergency1;
+            get.EmergencyContact2 = emergency2;
+            get.EmergencyContact3 = emergency3;
+            get.Phone1 = phone1;
+            get.Phone2 = phone2;
+            get.Phone3 = phone3;
             get.Status = status;
             _AppDbContext.SaveChanges ();
             ViewBag.items = get;
@@ -136,7 +141,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
         }
 
         [Authorize]
-        public IActionResult EmployeeAddData (string name, string email, string address, string phone, string gender, DateTime birth_date, string birth_place, string occupation, string placement, string emergency, string status, IFormFile image = null) {
+        public IActionResult EmployeeAddData (string name, string email, string address, string phone, string gender, DateTime birth_date, string birth_place, string occupation, string placement, string emergency1, string emergency2, string emergency3, string phone1, string phone2, string phone3, string status, IFormFile image = null) {
             var file = "";
             if (image != null) {
                 var path = "wwwroot//image";
@@ -158,8 +163,13 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                 Gender = gender,
                 Occupation = occupation,
                 Placement = placement,
-                EmergencyContact = emergency,
-                Status = status
+                EmergencyContact1 = emergency1,
+                EmergencyContact2 = emergency2,
+                EmergencyContact3 = emergency3,
+                Phone1 = phone1,
+                Phone2 = phone2,
+                Phone3 = phone3,
+                Status = status,
             };
             _AppDbContext.Add (obj);
             _AppDbContext.SaveChanges ();
@@ -169,7 +179,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             ViewBag.Req = countReq;
             return RedirectToAction ("EmployeeList", "Employee");
         }
-        public IActionResult EmployeeAddDataAgain (string name, string email, string address, string phone, string gender, DateTime birth_date, string birth_place, string occupation, string placement, string emergency, string status, IFormFile image = null) {
+        public IActionResult EmployeeAddDataAgain (string name, string email, string address, string phone, string gender, DateTime birth_date, string birth_place, string occupation, string placement, string emergency1, string emergency2, string emergency3, string phone1, string phone2, string phone3, string status, IFormFile image = null) {
             var file = "";
             if (image != null) {
                 var path = "wwwroot//image";
@@ -191,7 +201,12 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                 Gender = gender,
                 Occupation = occupation,
                 Placement = placement,
-                EmergencyContact = emergency,
+                EmergencyContact1 = emergency1,
+                EmergencyContact2 = emergency2,
+                EmergencyContact3 = emergency3,
+                Phone1 = phone1,
+                Phone2 = phone2,
+                Phone3 = phone3,
                 Status = status
             };
             _AppDbContext.Add (obj);
@@ -232,8 +247,13 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                                 Placement = rows[7].ToString (),
                                 Address = rows[8].ToString (),
                                 Status = rows[9].ToString (),
-                                EmergencyContact = rows[10].ToString (),
-                                Image = rows[11].ToString ()
+                                EmergencyContact1 = rows[10].ToString (),
+                                Phone1 = rows[11].ToString (),
+                                EmergencyContact2 = rows[12].ToString (),
+                                Phone2 = rows[13].ToString (),
+                                EmergencyContact3 = rows[14].ToString (),
+                                Phone3 = rows[15].ToString (),
+                                Image = rows[16].ToString ()
                             };
                             _AppDbContext.Employee.Add (obj);
                         }
@@ -269,7 +289,12 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                 "Placement",
                 "Address",
                 "Status",
-                "EmergencyContact",
+                "Emergency Name1",
+                "Phone 1",
+                "Emergency Name2",
+                "Phone 2",
+                "Emergency Name3",
+                "Phone 3",
                 "Image"
             };
             var items = (from item in _AppDbContext.Employee select new object[] {
@@ -284,7 +309,12 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                     $"{item.Placement}",
                     $"{item.Address}",
                     $"{item.Status}",
-                    $"{item.EmergencyContact}",
+                    $"{item.EmergencyContact1}",
+                    $"{item.Phone1}",
+                    $"{item.EmergencyContact2}",
+                    $"{item.Phone2}",
+                    $"{item.EmergencyContact3}",
+                    $"{item.Phone3}",
                     $"{item.Image}"
             }).ToList ();
 
@@ -309,10 +339,15 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                 "BirthDate",
                 "BirthPlace",
                 "Occupation",
-                "Placement",
+                "Departement",
                 "Address",
                 "Status",
-                "EmergencyContact",
+                "Emergency Name1",
+                "Phone 1",
+                "Emergency Name2",
+                "Phone 2",
+                "Emergency Name3",
+                "Phone 3",
                 "Image"
             };
             var itemcsv = new StringBuilder ();
@@ -340,7 +375,12 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                 "Departement",
                 "Address",
                 "Status",
-                "Emergency Contact",
+                "Emergency Name1",
+                "Phone 1",
+                "Emergency Name2",
+                "Phone 2",
+                "Emergency Name3",
+                "Phone 3",
                 "Image"
             };
             var items = new List<object[]> ();
@@ -357,7 +397,12 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                         $"{item.Placement}",
                         $"{item.Address}",
                         $"{item.Status}",
-                        $"{item.EmergencyContact}",
+                        $"{item.EmergencyContact1}",
+                        $"{item.Phone1}",
+                        $"{item.EmergencyContact2}",
+                        $"{item.Phone2}",
+                        $"{item.EmergencyContact3}",
+                        $"{item.Phone3}",
                         $"{item.Image}"
                 }).ToList ();
             } else if (paging.Search != null) {
@@ -373,7 +418,12 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                         $"{item.Placement}",
                         $"{item.Address}",
                         $"{item.Status}",
-                        $"{item.EmergencyContact}",
+                        $"{item.EmergencyContact1}",
+                        $"{item.EmergencyContact2}",
+                        $"{item.EmergencyContact3}",
+                        $"{item.Phone1}",
+                        $"{item.Phone2}",
+                        $"{item.Phone3}",
                         $"{item.Image}"
                 }).ToList ();
             }

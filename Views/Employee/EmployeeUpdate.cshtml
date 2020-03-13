@@ -1,13 +1,11 @@
 @{
     Layout = "_LayoutHC";
 }
+
+<!DOCTYPE html>
+<html>
 <head>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 .card {
     padding-top: 20px;
@@ -264,128 +262,446 @@
     padding: 0 20px;
     margin-bottom: 17px;
 }
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
 
-</style>
+/* Style the tab */
+.tab {
+  float: left;
+  background-color: #EBF5FB;
+  width: 30%;
+  height: 300px;
+}
 
-          
-<br><br>
-     @{
-        var Employee = ViewBag.items;
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background: #1F618D;
+  color: white;
+  padding: 22px 16px;
+  width: 100%;
+  border : 0;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #154360;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #FF5693;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  width: 70%;
+  border-left: none;
+  height: 200px;
+  background: white;
+  box-shadow: 1px 1px 10px #5499C7;
+}
+
+  body {
+  background-color: #EBF5FB;
       }
 
-<div style="background:#D4E6F1" class="container">
-	<div class="row">
-		<div class="col-lg-3 col-sm-6">
-            <div class="cardimage">
-                <div class="body"><br>
-                    <img class="img avatar" style="width:100%" src="@Employee.Image">
-                </div> 
-                <div class="bottom">
-                     <h3 class="text-center" style="color:#FF4842 "><b>@Employee.Name</b></h3>
-                     <p class="text-center" style="color:#FF4842">@Employee.Occupation</p><br>
-                </div>
-            </div>
-        </div>
-	
-<div class="col-lg-9 col-sm-6">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-	<div class="row justify-content-center">
-		<div class="col-18 col-md-9 col-lg-12 pb-5">
-                    <!--Form with header-->
-                        <div class="card border-primary rounded-0">
-                            <div class="card-header p-0">
-                                <div style="background:#1A5276 ; padding-bottom:18px; padding-top:15px" class="text-center py-2"><p></p>
-                                    <h3 style="color:#F5FBFF  "><b>Personal Data</b></h3>
-                                    @* <p style="color:#D6EAF8" class="m-0">@Employee.Name</p> *@
-                                </div>
-                            </div>
-                            <div class="card-body p-3">
+ .upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.btnx {
+  border: 2px solid #FF5693;
+  color: white;
+  background-color: #FF98BE;
+  padding: 6px 50px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: bold;
+}
+.upload-btn-wrapper input[type=file] {
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;}
+</style>
+</head>
+<body>
+<br><br><br>
+@{
+        var Employee = ViewBag.items;
+}
+<form method="POST" id="form1" enctype="multipart/form-data">
+<input type="hidden" value="@Employee.Id" name="Id">
+    <div class="row" style="float:right">
+      <div class="col-lg-12 col-sm-5">
+        <button class="btn btn-success" asp-action="EmployeeUpdateData" asp-controller="Employee"><b>Save</b></button>
+        <button class="btn btn-dark" style="background:#34495E;color: white" onclick="location.href='/Employee/EmployeeList'"><b>Cancel</b></button>
+      </div>
+    </div>
 
-                                <!--Body-->
-                             <form method="POST" id="form1" enctype="multipart/form-data">
-                              @{
-                                var Get = ViewBag.items;
-                                <input type="hidden" name="Id" value="@Get.Id"> }
-                                <div class="form-group">
-                                    <div class="text-center">
-                                        <input type="text" style="background:#F7F9F9;" class="form-control" name="name" value="@Get.Name" placeholder="Name" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="text-left">
-                                    <img src="@Get.Image" style="width:70px;margin-bottom:3px">
-                                    <label for="photo">Change Photo</label><br>
-                                       <input type="file" id="photo" name="image">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="text-center">
-                                        <input type="text" style="background:#F7F9F9;" class="form-control" name="email" value="@Get.Email" placeholder="Email" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="text-center">
-                                        <input type="text" style="background:#F7F9F9;" class="form-control" name="phone" value="@Get.Phone" placeholder="Phone" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="text-center">
-                                        <input type="text" style="background:#F7F9F9;" class="form-control" name="occupation" value="@Get.Occupation" placeholder="Occupation" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="text-center">
-                                        <input type="text" style="background:#F7F9F9;" class="form-control" name="status" value="@Get.Status" placeholder="Employee Status" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="text-center">
-                                        <input type="text" style="background:#F7F9F9;" class="form-control" name="placement" value="@Get.Placement" placeholder="Placement" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="text-center">
-                                        <input type="text" style="background:#F7F9F9;" class="form-control" name="address" value="@Get.Address" placeholder="Address" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="text-center">
-                                        <input type="text" style="background:#F7F9F9;" class="form-control" name="emergency" value="@Get.EmergencyContact" placeholder="Emergency Contact" required>
-                                    </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <button asp-action="EmployeeUpdateData" asp-controller="Employee" class="btn btn-success btn-block rounded-0 py-2">Save Change</button>
-                                </div></form>
-                            </div>
-                            <br>
-
-                        </div>
-                    
-                    <!--Form with header-->
-
-
-            </div>
-	</div>
-</div>
-
-</div></div>
 <br><br><br>
 
-  @* <script type="text/javascript">
-function Update(btn)
-{
-    var Id = document.getElementById("ID").value;
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var phone = document.getElementById("phone").value;
-    var address = document.getElementById("address").value;
-    var occupation = document.getElementById("occupation").value;
-    var placement = document.getElementById("placement").value;
-    var emergency = document.getElementById("emergency").value;
-    var status = document.getElementById("status").value;
-    var image = document.getElementById("image").value;
-    console.log(image);
-    location.href='/Employee/EmployeeUpdateData?Id='+Id+'&name='+name+'&email='+email+'&phone='+phone+'&address='+address+'&occupation='+occupation+'&placement='+placement+'&emergency='+emergency+'&status='+status+'&image='+image;
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Profile')" id="defaultOpen">Profile</button>
+  <button class="tablinks" onclick="openCity(event, 'Occupation')">Occupation</button>
+  <button class="tablinks" onclick="openCity(event, 'Address')">Address</button>
+  <button class="tablinks" onclick="openCity(event, 'Emergency Contact')">Emergency Contact</button>
+</div>
+
+<div id="Profile" class="tabcontent" style="height: 100%;margin-bottom:55px">
+	<div class="row">
+		<div class="col-lg-3 col-sm-6">
+            <div class="cardimage" style="float: left;">
+                <div class="body" class="text-right"><br>
+                    <img class="img avatar" style="width:100%; border:5px" src="@Employee.Image">
+                </div> 
+            </div>           
+	      	<div class="row">
+       <div class="upload-btn-wrapper" style="margin-left:18px; margin-top:10px">
+      <button class="btnx">Upload a file</button>
+      <input type="file" name="image" id="photo">
+    </div>
+		  </div>
+    </div>
+
+  <div class="col-lg-9 col-sm-6" style="padding-right: 30px;margin-top:14px">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="name">Name</label>
+        <input type="text" style="background:#F7F9F9;" class="form-control" value="@Employee.Name" name="name" required>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-lg-9 col-sm-6" style="padding-right: 30px;margin-top:14px">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="email">Email</label>
+        <input type="text" style="background:#F7F9F9;" class="form-control" value="@Employee.Email" name="email" required>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-lg-9 col-sm-6" style="padding-right: 30px;margin-top:14px">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="phone">Phone</label>
+        <input type="text" style="background:#F7F9F9;" class="form-control" value="@Employee.Phone" name="phone" required>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-lg-9 col-sm-6" style="margin-left:201px;padding-right: 30px; margin-top:14px">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="email">Gender</label>
+          <div class="row">
+            @{ if(@Employee.Gender == "male"){
+            <div class="col-lg-3">
+              <input type="radio" name="gender" checked="checked" value="male"> Male<br>
+            </div>
+            <div class="col-lg-l3">
+              <input type="radio" name="gender" value="female"> Female<br>
+            </div> } else {
+              <div class="col-lg-3">
+              <input type="radio" name="gender" value="male"> Male<br>
+            </div>
+            <div class="col-lg-l3">
+              <input type="radio" name="gender" checked="checked" value="female"> Female<br>
+            </div>
+            }}
+          </div>
+      </div>
+    </div>
+  </div>
+
+ @{var birthDate = @Employee.BirthDate.ToString("yyyy")+"-"+@Employee.BirthDate.ToString("MM")+"-"+@Employee.BirthDate.ToString("dd");}
+  <div class="col-lg-9 col-sm-6" style="padding-right: 30px;margin-top:14px;margin-left:201px">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="BirthDate">Birth Date</label>
+        <input type="date" value="@birthDate" style="background:#F7F9F9;" class="form-control" name="birth_date" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-9 col-sm-6" style="padding-right: 30px;margin-top:14px; margin-left:201px">
+    <div class="form-group">
+      <div class="text-left" style="margin-bottom: 30px;">
+        <label for="BirthDate">Birth Place</label>
+        <input type="text" style="background:#F7F9F9;" class="form-control" value="@Employee.BirthPlace" name="birth_place" required>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<div id="Occupation" class="tabcontent" style="height: 100%;">
+  <div class="row">
+  <div class="col-lg-12 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px;">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="occupation">Occupation</label>
+        <input type="text" style="background:#F7F9F9;" class="form-control" value="@Employee.Occupation" name="occupation" required>
+      </div>
+    </div>
+  </div>
+
+
+@{ 
+if(Employee.Placement == "Marketing"){
+     <div class="col-lg-12 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px;">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="department">Departement</label>
+        <select class="form-control" id="department" name="placement">
+          <option selected value="Marketing">Marketing</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Product">Product</option>
+          <option value="Support">Support</option>
+          <option value="Sales">Sales</option>
+          <option value="Finance & Admin">Finance & Admin</option>
+        </select>
+      </div>
+    </div>
+  </div>
 }
-</script> *@
+else if(Employee.Placement == "Product"){
+     <div class="col-lg-12 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px;">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="department">Departement</label>
+        <select class="form-control" id="department" name="placement">
+          <option value="Marketing">Marketing</option>
+          <option value="Engineering">Engineering</option>
+          <option selected value="Product">Product</option>
+          <option value="Support">Support</option>
+          <option value="Sales">Sales</option>
+          <option value="Finance & Admin">Finance & Admin</option>
+        </select>
+      </div>
+    </div>
+  </div>
+}
+else if(Employee.Placement == "Support"){
+     <div class="col-lg-12 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px;">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="department">Departement</label>
+        <select class="form-control" id="department" name="placement">
+          <option value="Marketing">Marketing</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Product">Product</option>
+          <option selected value="Support">Support</option>
+          <option value="Sales">Sales</option>
+          <option value="Finance & Admin">Finance & Admin</option>
+        </select>
+      </div>
+    </div>
+  </div>
+}
+else if(Employee.Placement == "Sales"){
+     <div class="col-lg-12 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px;">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="department">Departement</label>
+        <select class="form-control" id="department" name="placement">
+          <option value="Marketing">Marketing</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Product">Product</option>
+          <option value="Support">Support</option>
+          <option selected value="Sales">Sales</option>
+          <option value="Finance & Admin">Finance & Admin</option>
+        </select>
+      </div>
+    </div>
+  </div>
+}
+else if(Employee.Placement == "Finance & Admin"){
+     <div class="col-lg-12 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px;">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="department">Departement</label>
+        <select class="form-control" id="department" name="placement">
+          <option value="Marketing">Marketing</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Product">Product</option>
+          <option value="Support">Support</option>
+          <option value="Sales">Sales</option>
+          <option selected value="Finance & Admin">Finance & Admin</option>
+        </select>
+      </div>
+    </div>
+  </div>
+}
+else if (Employee.Placement == "Engineering") {
+     <div class="col-lg-12 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px;">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="department">Departement</label>
+        <select class="form-control" id="department" name="placement">
+          <option value="Marketing">Marketing</option>
+          <option selected value="Engineering">Engineering</option>
+          <option value="Product">Product</option>
+          <option value="Support">Support</option>
+          <option value="Sales">Sales</option>
+          <option value="Finance & Admin">Finance & Admin</option>
+        </select>
+      </div>
+    </div>
+  </div>
+}
+}
+
+
+@{ 
+if(Employee.Status == "Permanent") {
+  <div class="col-lg-12 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px; margin-bottom: 34px">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="department">Status</label>
+        <select class="form-control" id="department" name="status">
+          <option selected value="Permanent">Permanent</option>
+          <option value="Contract">Contract</option>
+          <option value="Probation">Probation</option>
+        </select>
+      </div>
+    </div>
+  </div>}
+  else if(Employee.Status == "Contract"){
+       <div class="col-lg-12 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px; margin-bottom: 34px">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="department">Status</label>
+        <select class="form-control" id="department" name="status">
+          <option value="Permanent">Permanent</option>
+          <option selected value="Contract">Contract</option>
+          <option value="Probation">Probation</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  }
+  else if(Employee.Status == "Probation"){
+ <div class="col-lg-12 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px; margin-bottom: 34px">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="department">Status</label>
+        <select class="form-control" id="department" name="status">
+          <option value="Permanent">Permanent</option>
+          <option value="Contract">Contract</option>
+          <option selected value="Probation">Probation</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  }
+}
+
+</div>
+</div>
+
+@{ var Employee1 = ViewBag.items;
+<div id="Address" class="tabcontent">
+ <div class="form-group" style="margin-top: 20px;margin-left: 20px; margin-right:20px">
+  <label for="address">Address</label>
+  <textarea value="" class="form-control" rows="5" name="address" id="address">@Employee1.Address</textarea>
+</div>
+</div>}
+
+@{ var Employee2 = ViewBag.items;}
+<div id="Emergency Contact" class="tabcontent" style="height: 100%;">
+ <div class="row">
+
+<div class="col">
+  <div class="col-lg-6 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px;">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="occupation">Emergency Contact 1</label>
+        <input placeholder="Name" value="@Employee2.EmergencyContact1" type="text" style="background:#F7F9F9;" class="form-control" name="emergency1" required>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px;">
+    <div class="form-group">
+      <div class="text-left">
+        <label style="color:white" for="occupation">Phone</label>
+        <input placeholder="Phone Number" value="@Employee2.Phone1" type="text" style="background:#F7F9F9;" class="form-control" name="phone1" required>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<div class="col">
+  <div class="col-lg-6 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px;">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="occupation">Emergency Contact 2</label>
+        <input value="@Employee2.EmergencyContact2" placeholder="Name" type="text" style="background:#F7F9F9;" class="form-control" name="emergency2" required>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px;">
+    <div class="form-group">
+      <div class="text-left">
+        <label style="color:white" for="occupation">Phone</label>
+        <input value="@Employee2.Phone2" placeholder="Phone Number" type="text" style="background:#F7F9F9;" class="form-control" name="phone2" required>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="col-lg-6 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px; margin-bottom:15px">
+    <div class="form-group">
+      <div class="text-left">
+        <label for="occupation">Emergency Contact 3</label>
+        <input placeholder="Name" type="text" style="background:#F7F9F9;" class="form-control" name="emergency3" required>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-sm-6" style="padding-right: 30px;padding-left:30px; margin-top:14px; margin-bottom:15px">
+    <div class="form-group">
+      <div class="text-left">
+        <label style="color:white" for="occupation">Phone</label>
+        <input placeholder="Phone Number" type="text" style="background:#F7F9F9;" class="form-control" name="phone3" required>
+      </div> </form>
+    </div>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+   
+</body>
+</html> 

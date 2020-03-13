@@ -48,6 +48,8 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             select a;
             var countReq = leavereq.Count ();
             ViewBag.Req = countReq;
+            var page =  _AppDbContext.ApplicantPagings.Find(1);
+            ViewBag.Paging = page;
             return View ("ApplicantList");
         }
 
@@ -72,7 +74,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                 Placement = get_applicant.Placement,
                 Status = "probation",
                 Address = get_applicant.Address,
-                EmergencyContact = get_applicant.EmergencyContact
+                EmergencyContact1 = get_applicant.EmergencyContact
                 };
                 _AppDbContext.Applicant.Remove (get_applicant);
                 _AppDbContext.Employee.Add (obj);
