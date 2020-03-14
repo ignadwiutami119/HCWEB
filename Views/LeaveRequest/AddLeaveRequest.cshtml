@@ -9,6 +9,9 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <style>
+    body {
+  background-color: #EBF5FB;
+         }
 .card {
     padding-top: 20px;
     margin: 10px 0 20px 0;
@@ -275,7 +278,7 @@
 	<div class="row justify-content-center">
 		<div class="col-18 col-md-9 col-lg-12 pb-5">
                     <!--Form with header-->
-                        <div class="card border-primary rounded-0">
+                        <div class="card border-primary rounded-0" style="box-shadow: 1px 1px 10px #5499C7; background:white">
                             <div class="card-header p-0">
                                 <div style="background:#1A5276 ; padding-bottom:18px; padding-top:15px" class="text-center py-2"><p></p>
                                     <h3 style="color:#F5FBFF  "><b>Leave Request Form</b></h3>
@@ -309,7 +312,7 @@
                                     </div>
                                 </div>                      
                                 <div class="text-center">
-                                    <button asp-action="AddData" asp-controller="LeaveRequest" class="btn btn-success btn-block rounded-0 py-2">Send</button>
+                                    <button asp-action="AddData" asp-controller="LeaveRequest" class="btn btn-success btn-block rounded-0 py-2">Submit</button>
                                 </div>
                                 </form>
                             </div>

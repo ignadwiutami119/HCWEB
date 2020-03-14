@@ -17,6 +17,11 @@ namespace HC_WEB_FINALPROJECT.Models
         public string Placement {get; set;}
         public string Status_Proccess {get; set;}
         public string Address {get; set;}
-        public string EmergencyContact {get; set;}
+        public string EmergencyContact1 {get; set;}
+        public string Phone1 {get; set;}
+        public string EmergencyContact2 {get; set;}
+        public string Phone2 {get; set;}
+        public string EmergencyContact3 {get; set;}
+        public string Phone3 {get; set;}
     }
 }

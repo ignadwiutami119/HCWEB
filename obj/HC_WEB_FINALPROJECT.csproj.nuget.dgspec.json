@@ -1,30 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TRAININGC#\\LastProgress\\HCWEB\\HC_WEB_FINALPROJECT.csproj": {}
+    "G:\\FinalProject\\HCWEB\\HC_WEB_FINALPROJECT.csproj": {}
   },
   "projects": {
-    "D:\\TRAININGC#\\LastProgress\\HCWEB\\HC_WEB_FINALPROJECT.csproj": {
+    "G:\\FinalProject\\HCWEB\\HC_WEB_FINALPROJECT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TRAININGC#\\LastProgress\\HCWEB\\HC_WEB_FINALPROJECT.csproj",
+        "projectUniqueName": "G:\\FinalProject\\HCWEB\\HC_WEB_FINALPROJECT.csproj",
         "projectName": "HC_WEB_FINALPROJECT",
-        "projectPath": "D:\\TRAININGC#\\LastProgress\\HCWEB\\HC_WEB_FINALPROJECT.csproj",
-        "packagesPath": "D:\\Users\\bsi50132\\.nuget\\packages\\",
-        "outputPath": "D:\\TRAININGC#\\LastProgress\\HCWEB\\obj\\",
+        "projectPath": "G:\\FinalProject\\HCWEB\\HC_WEB_FINALPROJECT.csproj",
+        "packagesPath": "C:\\Users\\Igna Dwi Utami\\.nuget\\packages\\",
+        "outputPath": "G:\\FinalProject\\HCWEB\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "D:\\Users\\bsi50132\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Igna Dwi Utami\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -96,12 +91,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.0.2, 3.0.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -110,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

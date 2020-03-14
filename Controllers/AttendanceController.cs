@@ -82,7 +82,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                     ClockIn = DateTime.Now,
                     Remarks_in = Remark,
                     EmployeeId = Id.ToString (),
-                    status = "Clockin Success"
+                    status = "In"
                 };
                 _AppDbContext.Attendances.Add (obj);
                 _AppDbContext.SaveChanges ();
@@ -109,7 +109,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
                 var obj = spesific_clockin.First ();
                 obj.ClockOut = clckout;
                 obj.Remarks_out = Remark;
-                obj.status = "success";
+                obj.status = "Success";
                 _AppDbContext.SaveChanges ();
             }
             var leavereq = from a in _AppDbContext.LeaveRequests where a.status == "pending"

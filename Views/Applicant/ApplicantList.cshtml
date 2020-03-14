@@ -326,23 +326,23 @@ input[type="file"] {
              <div class="card hovercard">
                    <div class="row">
                         @{ var page = ViewBag.Paging;
-                        if(page.StatusPage == "unproccess"){
+                        if(page.StatusPage == "Unproccess"){
                     <ul> 
-                        <li style="width:370px"><a style="background:#FF5693; color:#F0F9FF" href="/Applicant/ApplicantList?status=unproccess">Unproccess</a></li>
-                        <li style="width:370px"><a style="color:#F0F9FF" href="/Applicant/ApplicantList?status=psychotest">Psychotest</a></li>
-                        <li style="width:370px"><a style="color:#F0F9FF" href="/Applicant/ApplicantList?status=interview">Interview</a></li>
+                        <li style="width:370px"><a style="background:#FF5693; color:#F0F9FF" href="/Applicant/ApplicantList?status=Unproccess">Unproccess</a></li>
+                        <li style="width:370px"><a style="color:#F0F9FF" href="/Applicant/ApplicantList?status=Psychotest">Psychotest</a></li>
+                        <li style="width:370px"><a style="color:#F0F9FF" href="/Applicant/ApplicantList?status=Interview">Interview</a></li>
                     </ul>}
-                    else if(page.StatusPage == "psychotest"){
+                    else if(page.StatusPage == "Psychotest"){
                     <ul> 
-                        <li style="width:370px"><a style="color:#F0F9FF" href="/Applicant/ApplicantList?status=unproccess">Unproccess</a></li>
-                        <li style="width:370px"><a style="background:#FF5693; color:#F0F9FF" href="/Applicant/ApplicantList?status=psychotest">Psychotest</a></li>
-                        <li style="width:370px"><a style="color:#F0F9FF" href="/Applicant/ApplicantList?status=interview">Interview</a></li>
+                        <li style="width:370px"><a style="color:#F0F9FF" href="/Applicant/ApplicantList?status=Unproccess">Unproccess</a></li>
+                        <li style="width:370px"><a style="background:#FF5693; color:#F0F9FF" href="/Applicant/ApplicantList?status=Psychotest">Psychotest</a></li>
+                        <li style="width:370px"><a style="color:#F0F9FF" href="/Applicant/ApplicantList?status=Interview">Interview</a></li>
                     </ul>
                     }else {
                     <ul> 
-                        <li style="width:370px"><a style="color:#F0F9FF" href="/Applicant/ApplicantList?status=unproccess">Unproccess</a></li>
-                        <li style="width:370px"><a style="color:#F0F9FF" href="/Applicant/ApplicantList?status=psychotest">Psychotest</a></li>
-                        <li style="width:370px"><a style="background:#FF5693; color:#F0F9FF" href="/Applicant/ApplicantList?status=interview">Interview</a></li>
+                        <li style="width:370px"><a style="color:#F0F9FF" href="/Applicant/ApplicantList?status=Unproccess">Unproccess</a></li>
+                        <li style="width:370px"><a style="color:#F0F9FF" href="/Applicant/ApplicantList?status=Psychotest">Psychotest</a></li>
+                        <li style="width:370px"><a style="background:#FF5693; color:#F0F9FF" href="/Applicant/ApplicantList?status=Interview">Interview</a></li>
                     </ul>
                     }
                         }
@@ -369,7 +369,7 @@ input[type="file"] {
     <tr>
       <th class="text-center" scope="col">Name</th>
       <th class="text-center" scope="col">Email</th>
-      <th class="text-center" scope="col">Phone</th>
+      <th class="text-center" scope="col">Occupation</th>
       <th class="text-center" scope="col">Department</th>
       <th class="text-center" scope="col">Status Proccess</th>
       <th scope="col"></th>
@@ -383,7 +383,7 @@ input[type="file"] {
         <input type="hidden"  id="Id-@a.Id" value="@a.Id">
                 <td class="text-center"><b>@a.Name</b></td>
                 <td class="text-center">@a.Email</td>
-                <td class="text-center">@a.Phone</td>
+                <td class="text-center">@a.Occupation</td>
                 <td class="text-center">@a.Placement</td>
                 <td class="text-center">@a.Status_Proccess</td>
                 <td class="text-left"><a id="btn-@a.Id" onclick="javascript:ApplicantDetail(this)"><span class="glyphicon glyphicon-chevron-right"></span></a></td>
@@ -452,7 +452,7 @@ function ApplicantDetail(btn)
     id = id.substring(4,id.Length);
     var identify = "Id-"+id;
     var Id = document.getElementById(identify).value;
-    location.href='/Applicant/ApplicantDetail?Id='+Id;
+    location.href='/Applicant/ApplicantUpdate?Id='+Id;
 }
 
 function Search()

@@ -9,6 +9,9 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <style>
+       body {
+  background-color: #EBF5FB;
+         }
 .card {
     padding-top: 20px;
     margin: 10px 0 20px 0;
@@ -211,10 +214,11 @@
 
 .card.hovercard {
     position: relative;
+    box-shadow: 1px 1px 10px #5499C7;
     padding-top: 0;
     overflow: hidden;
     text-align: center;
-    background-color: #D6EAF8;
+    background-color: white;
 }
 
 .card.hovercard .cardheader {
@@ -264,7 +268,6 @@
     padding: 0 20px;
     margin-bottom: 17px;
 }
-
 </style>
           
 <br><br><br><br>
@@ -275,7 +278,7 @@
 	<div class="row justify-content-center">
 		<div class="col-18 col-md-9 col-lg-12 pb-5">
                     <!--Form with header-->
-                        <div class="card border-primary rounded-0">
+                        <div class="card border-primary rounded-0" style="box-shadow: 1px 1px 10px #5499C7; background:white">
                             <div class="card-header p-0">
                                 <div style="background:#1A5276 ; padding-bottom:18px; padding-top:15px" class="text-center py-2"><p></p>
                                     <h3 style="color:#F5FBFF  "><b>Clock-In Form</b></h3>
@@ -288,12 +291,12 @@
                                 @{var a = ViewBag.Employee;
                                 <input type="hidden" name="Id" value="@a.Id">}
                                 <div class="form-group">
-                                    <div class="text-center">
-                                        <input type="textarea" style="background:#F7F9F9;" class="form-control" name="Remark" placeholder="Remarks" required>
+                                   <div class="text-center">
+                                        <textarea class="form-control" rows="5" name="Remark" id="address" placeholder="Remarks" ></textarea>
                                     </div>
                                 </div>                      
                                 <div class="text-center">
-                                    <button asp-action="Create_ClockIn" asp-controller="Attendance" class="btn btn-success btn-block rounded-0 py-2">Submit</button>
+                                    <button asp-action="Create_ClockIn" asp-controller="Attendance" class="btn btn-success btn-block rounded-0 py-2">Clock In</button>
                                 </div>
                                 </form>
                             </div>

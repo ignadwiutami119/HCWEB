@@ -1,5 +1,5 @@
 {
-  "FilePath": "g:\\HCWEB\\HC_WEB_FINALPROJECT.csproj",
+  "FilePath": "g:\\FinalProject\\HCWEB\\HC_WEB_FINALPROJECT.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -15,7 +15,7 @@
         "Kind": "Components.Component",
         "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView",
         "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",
-        "Documentation": "\n             <summary>\n             Combines the behaviors of <see cref=\"T:Microsoft.AspNetCore.Components.Authorization.AuthorizeView\" /> and <see cref=\"T:Microsoft.AspNetCore.Components.RouteView\" />,\n             so that it displays the page matching the specified route but only if the user\n             is authorized to see it.\n            \n             Additionally, this component supplies a cascading parameter of type <see cref=\"T:System.Threading.Tasks.Task`1\" />,\n             which makes the user's current authentication state available to descendants.\n             </summary>\n        ",
+        "Documentation": null,
         "TagOutputHint": null,
         "CaseSensitive": true,
         "TagMatchingRules": [
@@ -113,7 +113,7 @@
         "Kind": "Components.Component",
         "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView",
         "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",
-        "Documentation": "\n             <summary>\n             Combines the behaviors of <see cref=\"T:Microsoft.AspNetCore.Components.Authorization.AuthorizeView\" /> and <see cref=\"T:Microsoft.AspNetCore.Components.RouteView\" />,\n             so that it displays the page matching the specified route but only if the user\n             is authorized to see it.\n            \n             Additionally, this component supplies a cascading parameter of type <see cref=\"T:System.Threading.Tasks.Task`1\" />,\n             which makes the user's current authentication state available to descendants.\n             </summary>\n        ",
+        "Documentation": null,
         "TagOutputHint": null,
         "CaseSensitive": true,
         "TagMatchingRules": [
@@ -14364,143 +14364,143 @@
   "RootNamespace": "HC_WEB_FINALPROJECT",
   "Documents": [
     {
-      "FilePath": "g:\\HCWEB\\Views\\Home\\Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Broadcast\\Broadcast.cshtml",
-      "TargetPath": "Views\\Broadcast\\Broadcast.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Shared\\_LayoutHC.cshtml",
-      "TargetPath": "Views\\Shared\\_LayoutHC.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\_ViewStart.cshtml",
-      "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Employee\\EmployeeUpdate.cshtml",
-      "TargetPath": "Views\\Employee\\EmployeeUpdate.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\LeaveRequest\\AddLeaveRequest.cshtml",
-      "TargetPath": "Views\\LeaveRequest\\AddLeaveRequest.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Attendance\\Clockout.cshtml",
-      "TargetPath": "Views\\Attendance\\Clockout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Applicant\\ApplicantUpdate.cshtml",
-      "TargetPath": "Views\\Applicant\\ApplicantUpdate.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Home\\Dashboard.cshtml",
-      "TargetPath": "Views\\Home\\Dashboard.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Home\\test.cshtml",
-      "TargetPath": "Views\\Home\\test.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Employee\\AddEmployee.cshtml",
-      "TargetPath": "Views\\Employee\\AddEmployee.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Attendance\\AttendanceThisMonth.cshtml",
-      "TargetPath": "Views\\Attendance\\AttendanceThisMonth.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\LeaveRequest\\LeaveRequestList.cshtml",
-      "TargetPath": "Views\\LeaveRequest\\LeaveRequestList.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Employee\\EmployeeDetail.cshtml",
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Employee\\EmployeeDetail.cshtml",
       "TargetPath": "Views\\Employee\\EmployeeDetail.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\HCWEB\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Attendance\\AttendanceList.cshtml",
-      "TargetPath": "Views\\Attendance\\AttendanceList.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Event\\Event.cshtml",
-      "TargetPath": "Views\\Event\\Event.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Applicant\\ApplicantList.cshtml",
-      "TargetPath": "Views\\Applicant\\ApplicantList.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Attendance\\AttendanceHome.cshtml",
-      "TargetPath": "Views\\Attendance\\AttendanceHome.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Applicant\\ApplicantDetail.cshtml",
-      "TargetPath": "Views\\Applicant\\ApplicantDetail.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Shared\\Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Employee\\Warning.cshtml",
-      "TargetPath": "Views\\Employee\\Warning.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Applicant\\AddApplicant.cshtml",
-      "TargetPath": "Views\\Applicant\\AddApplicant.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\HCWEB\\Views\\Attendance\\ClockIn.cshtml",
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Attendance\\ClockIn.cshtml",
       "TargetPath": "Views\\Attendance\\ClockIn.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\HCWEB\\Views\\Employee\\EmployeeList.cshtml",
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Attendance\\AttendanceThisMonth.cshtml",
+      "TargetPath": "Views\\Attendance\\AttendanceThisMonth.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Home\\test.cshtml",
+      "TargetPath": "Views\\Home\\test.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Applicant\\ApplicantList.cshtml",
+      "TargetPath": "Views\\Applicant\\ApplicantList.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Employee\\EmployeeList.cshtml",
       "TargetPath": "Views\\Employee\\EmployeeList.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Employee\\Warning.cshtml",
+      "TargetPath": "Views\\Employee\\Warning.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Attendance\\AttendanceHome.cshtml",
+      "TargetPath": "Views\\Attendance\\AttendanceHome.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Employee\\AddEmployee.cshtml",
+      "TargetPath": "Views\\Employee\\AddEmployee.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Event\\Event.cshtml",
+      "TargetPath": "Views\\Event\\Event.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Home\\Dashboard.cshtml",
+      "TargetPath": "Views\\Home\\Dashboard.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Applicant\\AddApplicant.cshtml",
+      "TargetPath": "Views\\Applicant\\AddApplicant.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Broadcast\\Broadcast.cshtml",
+      "TargetPath": "Views\\Broadcast\\Broadcast.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Employee\\EmployeeUpdate.cshtml",
+      "TargetPath": "Views\\Employee\\EmployeeUpdate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Applicant\\ApplicantDetail.cshtml",
+      "TargetPath": "Views\\Applicant\\ApplicantDetail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Attendance\\Clockout.cshtml",
+      "TargetPath": "Views\\Attendance\\Clockout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Home\\Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Attendance\\AttendanceList.cshtml",
+      "TargetPath": "Views\\Attendance\\AttendanceList.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\LeaveRequest\\LeaveRequestList.cshtml",
+      "TargetPath": "Views\\LeaveRequest\\LeaveRequestList.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Applicant\\ApplicantUpdate.cshtml",
+      "TargetPath": "Views\\Applicant\\ApplicantUpdate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\LeaveRequest\\AddLeaveRequest.cshtml",
+      "TargetPath": "Views\\LeaveRequest\\AddLeaveRequest.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\Shared\\_LayoutHC.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutHC.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\FinalProject\\HCWEB\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
     }
   ],

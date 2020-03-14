@@ -11,6 +11,21 @@
 .card {
     padding-top: 20px;
     margin: 10px 0 20px 0;
+    background-color:#D4E6F1;
+    border-top-width: 0;
+    border-bottom-width: 2px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.cardimage {
+    margin: 10px 0 0px 0;
     background-color: rgba(214, 224, 226, 0.2);
     border-top-width: 0;
     border-bottom-width: 2px;
@@ -46,7 +61,7 @@
     border: 0;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    border-radius: 50%;
+    border-radius: 5%;
 }
 
 .card .card-heading.image .card-heading-header {
@@ -194,11 +209,12 @@
 }
 
 .card.hovercard {
+    box-shadow: 1px 1px 10px #5499C7;
     position: relative;
     padding-top: 0;
     overflow: hidden;
     text-align: center;
-    background-color: #D6EAF8;
+    background-color: white;
 }
 
 .card.hovercard .cardheader {
@@ -216,8 +232,8 @@
 .card.hovercard .avatar img {
     width: 100px;
     height: 100px;
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 100px;
+    max-height: 100px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
@@ -232,7 +248,7 @@
     margin-bottom: 4px;
     font-size: 24px;
     line-height: 1;
-    color: #262626;
+    color: #ffffff;
     vertical-align: middle;
 }
 
@@ -248,11 +264,81 @@
     padding: 0 20px;
     margin-bottom: 17px;
 }
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
 
+/* Style the tab */
+.tab {
+  float: left;
+  background-color: #EBF5FB;
+  width: 30%;
+  height: 300px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background: #1F618D;
+  color: white;
+  padding: 22px 16px;
+  width: 100%;
+  border : 0;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #154360;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #FF5693;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  width: 70%;
+  border-left: none;
+  height: 200px;
+  background: white;
+  box-shadow: 1px 1px 10px #5499C7;
+}
+
+  body {
+  background-color: #EBF5FB;
+      }
+
+ .upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.btnx {
+  border: 2px solid #FF5693;
+  color: white;
+  background-color: #FF98BE;
+  padding: 6px 50px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: bold;
+}
+.upload-btn-wrapper input[type=file] {
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;}
 </style>
 
   @{
      var Employee = ViewBag.items;
+     var date = Employee.BirthDate.ToString("dd MMMM yyyy");
      <input type="hidden" id="ID" value="@Employee.Id">
           
 <br><br>
@@ -272,7 +358,7 @@
             <div class="card hovercard">
                 <div class="cardheader" style="margin-top: 15px;">
                     <div style="padding-top:2px; padding-bottom:5px">
-                  <h2 style="color:#EBF5FB"><b>@Employee.Name</b></h2></div>
+                  <h2 style="color:white"><b>@Employee.Name</b></h2></div>
                 </div>
                 <div class="avatar"><br>
                     <img alt="profil-picture" src=@Employee.Image>
@@ -281,8 +367,8 @@
                     <div style="color:#FF4842">
                         <b>@Employee.Occupation</b>
                     </div>
-                    <div class="desc">@Employee.Email</div>
-                    <div class="desc">@Employee.Phone</div>
+                    <div class="desc"><b>Departement @Employee.Placement</b></div>
+                    <div class="desc">Status : @Employee.Status</div>
                 </div>
                 <div class="bottom">
                     <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
@@ -305,25 +391,79 @@
 	</div>
 
 <div class="col-lg-12 col-sm-6">
-<table class="table">
+
+<div class="col-lg-7 col-sm-5" style="background:white;float:left; padding-top:20px; box-shadow: 1px 1px 10px #5499C7;">
+    <div class="text-center">
+            <h4>Personal Information</h4>
+        </div><br>
+<table class="table table-hover">
   <thead class="thead-dark">
-    <tr>
-      <th scope="col">Birth Date</th>
-      <th scope="col">Birth Place</th>
-      <th scope="col">Gender</th>
-      <th scope="col">Address</th>
-      <th scope="col">Emergency Contact</th>
-    </tr>
   </thead>
   <tbody>
     <tr>
-      <td>@Employee.BirthDate</td>
-      <td>@Employee.BirthPlace</td>
-      <td>@Employee.Gender</td>
+      <td><b>Name</b></td>
+      <td>@Employee.Name</td>
+    </tr>
+    <tr>
+      <td><b>Email</b></td>
+      <td>@Employee.Email</td>
+    </tr>
+    <tr>
+      <td><b>Phone</b></td>
+      <td>@Employee.Phone</td>
+    </tr>
+    <tr>
+      <td><b>Address</b></td>
       <td>@Employee.Address</td>
+    </tr>
+    <tr>
+      <td><b>Birth Date</b></td>
+      <td>@date</td>
+    </tr>
+    <tr>
+      <td><b>Birth Place</b></td>
+      <td>@Employee.BirthPlace</td>
+    </tr>
+   </tbody>
+</table> 
+</div>
+
+    <div class="col-lg-4 col-sm-6" style="background:white;margin-left:18px; padding-top:20px; padding-left:10px;padding-right:10px; box-shadow: 1px 1px 10px #5499C7;">
+        <div class="text-center">
+            <h4>Emergency Contact</h4>
+        </div><br>
+<table class="table table-hover">
+  <thead class="thead-dark">
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Emergency Contact #1</b></td>
       <td>@Employee.EmergencyContact1</td>
     </tr>
+    <tr>
+      <td><b></b></td>
+      <td>@Employee.Phone1</td>
+    </tr>
+    <tr>
+      <td><b>Emergency Contact #2</b></td>
+      <td>@Employee.EmergencyContact2</td>
+    </tr>
+    <tr>
+      <td><b></b></td>
+      <td>@Employee.Phone2</td>
+    </tr>
+    <tr>
+      <td><b>Emergency Contact #3</b></td>
+      <td>@Employee.EmergencyContact3</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>@Employee.Phone3</td>
+    </tr>
+   </tbody>
 </table> 
+</div>
+
 </div> 
 
 </div>

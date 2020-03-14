@@ -79,8 +79,7 @@ namespace HC_WEB_FINALPROJECT.Controllers {
             _AppDbContext.SaveChanges ();
             var get = from a in _AppDbContext.LeaveRequests where (a.status == paging.StatusPage) && a.EmployeeName.Contains (keyword) || a.Remarks.Contains (keyword) || a.EmployeeDepartment.Contains (keyword) || a.EmployeeOccupation.Contains (keyword) || a.EmployeeID.Contains (keyword) select a;
             ViewBag.items = get;
-            var set_page = _AppDbContext.LeavePagings.Find (1);
-            ViewBag.page = set_page;
+            ViewBag.page = paging;
             var leavereq = from a in _AppDbContext.LeaveRequests where a.status == "pending"
             select a;
             var countReq = leavereq.Count ();
