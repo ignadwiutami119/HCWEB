@@ -27,18 +27,69 @@ namespace HC_WEB_FINALPROJECT.Controllers {
         public IActionResult Event () {
             var Event = from a in _AppDbContext.Events select a;
             ViewBag.Event = Event;
+            var leavereq = from a in _AppDbContext.LeaveRequests where a.status == "pending"
+            select a;
+            var countReq = leavereq.Count ();
+            ViewBag.Req = countReq;
             return View ();
         }
+
+        [Authorize]
+        public IActionResult AddEventData (string name, DateTime date) {
+            var obj = new Event{
+                Name = name,
+                day = date
+            };
+            _AppDbContext.Events.Add(obj);
+            _AppDbContext.SaveChanges();
+            var leavereq = from a in _AppDbContext.LeaveRequests where a.status == "pending"
+            select a;
+            var countReq = leavereq.Count ();
+            ViewBag.Req = countReq;
+            return RedirectToAction ("Event","Event");
+        }
+
+        [Authorize]
+        public IActionResult EditEvent (int Id) {
+            var get = _AppDbContext.Events.Find(Id);
+            ViewBag.Event = get;
+            var leavereq = from a in _AppDbContext.LeaveRequests where a.status == "pending"
+            select a;
+            var countReq = leavereq.Count ();
+            ViewBag.Req = countReq;
+            return View ();
+        }
+
+        [Authorize]
+        public IActionResult EditEventData (int Id, string name, DateTime date) {
+            var get = _AppDbContext.Events.Find(Id);
+            get.Name = name;
+            get.day = date;
+            _AppDbContext.SaveChanges();
+            var leavereq = from a in _AppDbContext.LeaveRequests where a.status == "pending"
+            select a;
+            var countReq = leavereq.Count ();
+            ViewBag.Req = countReq;
+            return RedirectToAction ("Event","Event");
+        }
+
+        [Authorize]
+        public IActionResult AddEvent () {
+            var leavereq = from a in _AppDbContext.LeaveRequests where a.status == "pending"
+            select a;
+            var countReq = leavereq.Count ();
+            ViewBag.Req = countReq;
+            return View ();
+        }
+
         public IActionResult Remove (int Id) {
             var Event = _AppDbContext.Events.Find(Id);
             _AppDbContext.Remove(Event);
             _AppDbContext.SaveChanges();
-            return RedirectToAction ("Event","Event");
-        }
-        public IActionResult RemoveView (int Id) {
-            var Event = _AppDbContext.Events.Find(Id);
-            _AppDbContext.Remove(Event);
-            _AppDbContext.SaveChanges();
+            var leavereq = from a in _AppDbContext.LeaveRequests where a.status == "pending"
+            select a;
+            var countReq = leavereq.Count ();
+            ViewBag.Req = countReq;
             return RedirectToAction ("Event","Event");
         }
 

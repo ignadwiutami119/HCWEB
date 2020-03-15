@@ -11,14 +11,21 @@
 <body>
   <br><br>
   @{var employ = ViewBag.Employee;
+  var Id = ViewBag.Id;
   var dt = DateTime.Now;
   var month_ = dt.ToString("MMMM yyyy");
   <div style="margin-left: 70px;">
-  <h2>Attendance of @employ.Name</h2>
+  <h2>Attendance of <br>@employ.Name</h2>
   <p style="width:200px">On @month_</p></div>
   }
+
 <div class="container">
-<div style="width:1080px;margin-left:40px;margin-top:10px; margin-bottom:30px;" class=" text-center">
+<div style="margin-top:10px; margin-right:24px; margin-bottom:4px; float:right">
+  <form asp-action="Export" asp-controller="Attendance">
+  <input type="hidden" name="Id" value="@Id">
+<button class="btn btn-success" type="submit">Export</button>
+</form></div>
+<div style="width:1080px;margin-left:40px;margin-top:7px; margin-bottom:30px;" class=" text-center">
   <table style="background:white" class="table text-left">
             <tbody>
     <br>

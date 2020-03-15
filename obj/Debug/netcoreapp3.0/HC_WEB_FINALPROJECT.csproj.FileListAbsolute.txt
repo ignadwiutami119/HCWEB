@@ -1058,3 +1058,5 @@ G:\FinalProject\HCWEB\obj\Debug\netcoreapp3.0\HC_WEB_FINALPROJECT.Views.pdb
 G:\FinalProject\HCWEB\obj\Debug\netcoreapp3.0\HC_WEB_FINALPROJECT.csproj.CopyComplete
 G:\FinalProject\HCWEB\obj\Debug\netcoreapp3.0\HC_WEB_FINALPROJECT.dll
 G:\FinalProject\HCWEB\obj\Debug\netcoreapp3.0\HC_WEB_FINALPROJECT.pdb
+G:\FinalProject\HCWEB\obj\Debug\netcoreapp3.0\Razor\Views\Event\AddEvent.cshtml.g.cs
+G:\FinalProject\HCWEB\obj\Debug\netcoreapp3.0\Razor\Views\Event\EditEvent.cshtml.g.cs

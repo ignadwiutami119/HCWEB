@@ -387,7 +387,11 @@ input[type="file"] {
                 <td class="text-center">@a.Placement</td>
                 <td class="text-center">@a.Status_Proccess</td>
                 <td class="text-left"><a id="btn-@a.Id" onclick="javascript:ApplicantDetail(this)"><span class="glyphicon glyphicon-chevron-right"></span></a></td>
-                <td class="text-right"><button id="btn-@a.Id" class="btn" style="background:#FF5693; color:white" onclick="javascript:NextProccess(this)">Next Proccess</button>  <button id="btn-@a.Id" class="btn" style="background:#3E3E3E; color:white" onclick="javascript:Reject(this)">Reject</button></td>
+                @{if(a.Status_Proccess=="Interview"){
+                <td class="text-right"><button id="btn-@a.Id" class="btn" style="background:#FF5693; color:white" onclick="javascript:NextProccess(this)">Approve as Employee</button>  <button id="btn-@a.Id" class="btn" style="background:#3E3E3E; color:white" onclick="javascript:Reject(this)">Reject</button></td> }
+                else if(a.Status_Proccess == "Psychotest" || a.Status_Proccess == "Unproccess"){
+                    <td class="text-right"><button id="btn-@a.Id" class="btn" style="background:#FF5693; color:white" onclick="javascript:NextProccess(this)">Next Proccess</button>  <button id="btn-@a.Id" class="btn" style="background:#3E3E3E; color:white" onclick="javascript:Reject(this)">Reject</button></td>
+                }}
             </tr> 
             } 
     } }
